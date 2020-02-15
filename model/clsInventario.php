@@ -31,7 +31,7 @@ class clsInventario
         return $this->idInventario;
     }
     
-    public function setIdInventario($IdInventario)
+    public function setIdInventario($idInventario)
     {
         $this->idInventario = $idInventario;
     }
@@ -41,7 +41,7 @@ class clsInventario
         return $this->nombre;
     }
     
-    public function setNombre($Nombre)
+    public function setNombre($nombre)
     {
         $this->nombre = $nombre;
     }
@@ -51,19 +51,19 @@ class clsInventario
         return $this->descripcion;
     }
     
-    public function setDescripcion($Descripcion)
+    public function setDescripcion($descripcion)
     {
         $this->descripcion = $descripcion;
     }
 
     public function getFechaVencimiento()
     {
-        return $this->cantidad;
+        return $this->fechaVencimiento;
     }
     
-    public function setFechaVencimiento($FechaVencimiento)
+    public function setFechaVencimiento($fechaVencimiento)
     {
-        $this->cantidad = $cantidad;
+        $this->fechaVencimiento = $fechaVencimiento;
     }
     
     public function getCantidad()
@@ -71,7 +71,7 @@ class clsInventario
         return $this->cantidad;
     }
     
-    public function setCantidad($Cantidad)
+    public function setCantidad($cantidad)
     {
         $this->cantidad = $cantidad;
     }
@@ -81,7 +81,7 @@ class clsInventario
         return $this->fechaFabricacion;
     }
     
-    public function setFechaFabricacion($FechaFabricacion)
+    public function setFechaFabricacion($fechaFabricacion)
     {
         $this->fechaFabricacion = $fechaFabricacion;
     }
@@ -91,7 +91,7 @@ class clsInventario
         return $this->precio;
     }
     
-    public function setPrecio($Precio)
+    public function setPrecio($precio)
     {
         $this->precio = $precio;
     }
@@ -101,7 +101,7 @@ class clsInventario
         return $this->idEmpFk;
     }
     
-    public function setIdEmpFk($IdEmpFk)
+    public function setIdEmpFk($idEmpFk)
     {
         $this->idEmpFk = $idEmpFk;
     }
@@ -111,7 +111,7 @@ class clsInventario
         return $this->idLabFk;
     }
     
-    public function setIdLabFk($IdLabFk)
+    public function setIdLabFk($idLabFk)
     {
         $this->idLabFk = $idLabFk;
     }
