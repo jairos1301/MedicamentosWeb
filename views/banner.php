@@ -1,26 +1,21 @@
-<body >
-    <div class="bg-success">
-        <br>
-        <h1 class="text-white ">|| | |  Registro Fincas</h1>
-        <br>
-        <nav>
-            <ul class="nav nav-tabs">
-                <li class="nav-items">
-                    <a class="nav-link active bg-info text-white" href="index.php?page=finca"><strong>Finca</strong></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active bg-info text-white" href="index.php?page=ganado"><strong>Ganado</strong></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active bg-info text-white" href="index.php?page=departamento"><strong>Departamento</strong></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active bg-info text-white" href="index.php?page=municipio"><strong>Municipio</strong></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active bg-info text-white" href="index.php?page=login"><strong>Cerrar Session</strong></a>
-                </li>
-            </ul>
-        </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.php?page=">Empleado</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?page=">Inventario</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?page=">Venta</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="index.php?page=">Disabled</a>
+            </li>
+        </ul>
     </div>
-</body>
+    <form class="form-inline mx-auto">
+        <button class="btn btn-outline-danger" type="submit">Cerrar Sesión</button>
+    </form>
+</nav>

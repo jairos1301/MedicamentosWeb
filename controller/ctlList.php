@@ -2,6 +2,8 @@
 
 include '../DAO/listDAO.php';
 
+
+
     $type = isset($_POST['type']) ? $_POST['type'] : "";
     $valor = isset($_POST['valor']) ? $_POST['valor'] : "";
 
