@@ -2,10 +2,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="index.php?page=">Empleado</a>
+                <a class="nav-link" href="index.php?page=vistaEmpleado">Empleado</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.php?page=">Inventario</a>
+                <a class="nav-link" href="index.php?page=vistaInventario">Inventario</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="index.php?page=">Venta</a>

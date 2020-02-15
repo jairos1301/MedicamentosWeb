@@ -3,6 +3,7 @@
 include "../model/clsEmpleado.php";
 include '../DAO/empleadoDAO.php';
 
+    $idEmpleado = isset($_POST['idEmpleado']) ? $_POST['idEmpleado'] : '';
     $cedula = isset($_POST['cedula']) ? $_POST['cedula'] : '';
     $nombres = isset($_POST['nombres']) ? $_POST['nombres'] : "";
     $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : "";
@@ -11,7 +12,7 @@ include '../DAO/empleadoDAO.php';
     $password = isset($_POST['password']) ? $_POST['password'] : "";
     $type = isset($_POST['type']) ? $_POST['type'] : "";
 
-    $empleado = new clsEmpleado($cedula, $nombres, $apellidos, $correo, $usuario, $password);
+    $empleado = new clsEmpleado($idEmpleado,$cedula, $nombres, $apellidos, $correo, $usuario, $password);
     $conex = new empleadoDAO();
 
 switch ($type) {
