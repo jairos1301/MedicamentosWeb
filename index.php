@@ -10,8 +10,9 @@
     <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="resource/jquery/jquery.js"></script>
     <script type="text/javascript" src="resource/js/empleados.js"></script>
+    <script type="text/javascript" src="resource/js/inventario.js"></script>
+    <script type="text/javascript" src="resource/js/cbList.js"></script>
     <script type="text/javascript" src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <!-- <script type="text/javascript" src="resource/js/gestionUsuario.js"></script> -->
     
 </head>
 

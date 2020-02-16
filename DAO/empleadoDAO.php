@@ -14,7 +14,6 @@ class empleadoDAO {
         . "VALUES (" . $obj->getCedula() . ",'" . $obj->getNombres() . "','" . 
         $obj->getApellidos(). "','"  . $obj->getCorreo() . "','" . $obj->getUsuario() ."','" . 
         $obj->getPassword() . "')";
-        //print($sql);
         $this->objCon->ExecuteTransaction($sql);
     }
 

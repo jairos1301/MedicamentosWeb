@@ -3,27 +3,27 @@
 class clsInventario
 {
     private $idInventario;
-    private $nombre;
-    private $descripcion;
-    private $fechaVencimiento;
+    private $nombreInv;
+    private $descripcionInv;
+    private $fechaVen;
     private $cantidad;
-    private $fechaFabricacion;
+    private $fechaFab;
     private $precio;
-    private $idEmpFk;
-    private $idLabFk;
+    private $Empleado_idEmpleado;
+    private $Laboratorio_idLaboratorio;
  
 
-    public function __construct($idInventario, $nombre, $descripcion, $fechaVencimiento, $cantidad, $fechaFabricacion, $precio, $idEmpFk, $idLabFk)
+    public function __construct($idInventario, $nombreInv, $descripcionInv, $fechaVen, $cantidad, $fechaFab, $precio, $Empleado_idEmpleado, $Laboratorio_idLaboratorio)
     {
         $this->idInventario = $idInventario;
-        $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
-        $this->fechaVencimiento = $fechaVencimiento;
+        $this->nombreInv = $nombreInv;
+        $this->descripcionInv = $descripcionInv;
+        $this->fechaVen = $fechaVen;
         $this->cantidad = $cantidad;
-        $this->fechaFabricacion = $fechaFabricacion;
+        $this->fechaFab = $fechaFab;
         $this->precio = $precio;
-        $this->idEmpFk = $idEmpFk;
-        $this->idLabFk = $idLabFk;
+        $this->idEmpFk = $Empleado_idEmpleado;
+        $this->idLabFk = $Laboratorio_idLaboratorio;
     }
 
     public function getIdInventario()
@@ -36,34 +36,34 @@ class clsInventario
         $this->idInventario = $idInventario;
     }
 
-    public function getNombre()
+    public function getNombreInv()
     {
-        return $this->nombre;
+        return $this->nombreInv;
     }
     
-    public function setNombre($nombre)
+    public function setNombreInv($nombreInv)
     {
-        $this->nombre = $nombre;
+        $this->nombreInv = $nombreInv;
     }
 
-    public function getDescripcion()
+    public function getDescripcionInv()
     {
-        return $this->descripcion;
+        return $this->descripcionInv;
     }
     
-    public function setDescripcion($descripcion)
+    public function setDescripcionInv($descripcionInv)
     {
-        $this->descripcion = $descripcion;
+        $this->descripcionInv = $descripcionInv;
     }
 
-    public function getFechaVencimiento()
+    public function getFechaVen()
     {
-        return $this->fechaVencimiento;
+        return $this->fechaVen;
     }
     
-    public function setFechaVencimiento($fechaVencimiento)
+    public function setFechaVen($fechaVen)
     {
-        $this->fechaVencimiento = $fechaVencimiento;
+        $this->fechaVen = $fechaVen;
     }
     
     public function getCantidad()
@@ -76,14 +76,14 @@ class clsInventario
         $this->cantidad = $cantidad;
     }
 
-    public function getFechaFabricacion()
+    public function getFechaFab()
     {
-        return $this->fechaFabricacion;
+        return $this->fechaFab;
     }
     
-    public function setFechaFabricacion($fechaFabricacion)
+    public function setFechaFab($fechaFab)
     {
-        $this->fechaFabricacion = $fechaFabricacion;
+        $this->fechaFab = $fechaFab;
     }
 
     public function getPrecio()
@@ -96,24 +96,24 @@ class clsInventario
         $this->precio = $precio;
     }
 
-    public function getIdEmpFk()
+    public function getEmpleado_idEmpleado()
     {
         return $this->idEmpFk;
     }
     
-    public function setIdEmpFk($idEmpFk)
+    public function setEmpleado_idEmpleado($Empleado_idEmpleado)
     {
-        $this->idEmpFk = $idEmpFk;
+        $this->idEmpFk = $Empleado_idEmpleado;
     }
 
-    public function getIdLabFk()
+    public function getLaboratorio_idLaboratorio()
     {
         return $this->idLabFk;
     }
     
-    public function setIdLabFk($idLabFk)
+    public function setLaboratorio_idLaboratorio($Laboratorio_idLaboratorio)
     {
-        $this->idLabFk = $idLabFk;
+        $this->idLabFk = $Laboratorio_idLaboratorio;
     }
 
 }

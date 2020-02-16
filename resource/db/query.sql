@@ -37,8 +37,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `medicamentos`.`Laboratorio` (
   `idLaboratorio` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45) NOT NULL,
-  `descripcion` VARCHAR(45) NOT NULL,
+  `nombreLab` VARCHAR(45) NOT NULL,
+  `descripcionLab` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idLaboratorio`))
 ENGINE = InnoDB;
 
@@ -48,11 +48,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `medicamentos`.`Inventario` (
   `idInventario` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45) NOT NULL,
-  `descripcion` VARCHAR(45) NOT NULL,
-  `fecha` DATETIME NOT NULL,
+  `nombreInv` VARCHAR(45) NOT NULL,
+  `descripcionInv` VARCHAR(45) NOT NULL,
+  `fechaVen` DATETIME NOT NULL,
   `cantidad` INT NOT NULL,
-  `fecha_fab` DATETIME NOT NULL,
+  `fechaFab` DATETIME NOT NULL,
   `precio` INT NOT NULL,
   `Empleado_idEmpleado` INT NOT NULL,
   `Laboratorio_idLaboratorio` INT NOT NULL,
@@ -138,3 +138,12 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO `medicamentos`.`Laboratorio` (`idLaboratorio`, `nombreLab`, `descripcionLab`) VALUES ('1', 'Genfar', 'jwlkdfjwlk');
+INSERT INTO `medicamentos`.`Laboratorio` (`idLaboratorio`, `nombreLab`, `descripcionLab`) VALUES ('2', 'LaSante', 'fvfvf');
+INSERT INTO `medicamentos`.`Laboratorio` (`idLaboratorio`, `nombreLab`, `descripcionLab`) VALUES ('3', 'Laboratorios Neo', 'rcrcvrv');
+INSERT INTO `medicamentos`.`Laboratorio` (`idLaboratorio`, `nombreLab`, `descripcionLab`) VALUES ('4', 'LaRoche', 'frvtv');
+INSERT INTO `medicamentos`.`Laboratorio` (`idLaboratorio`, `nombreLab`, `descripcionLab`) VALUES ('5', 'Johnson & Johnson', '4r4f');
+INSERT INTO `medicamentos`.`Laboratorio` (`idLaboratorio`, `nombreLab`, `descripcionLab`) VALUES ('6', 'Pfizer', 'frfrtgt');
+
+INSERT INTO `medicamentos`.`Empleado` (`idEmpleado`, `cedula`, `nombres`, `apellidos`, `correo`, `usuario`) VALUES ('1', '1097032965', 'Jairo', 'Salazar', 'jairos1301', '1234');

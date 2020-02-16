@@ -10,38 +10,40 @@ class inventarioDAO {
     }
 
     public function guardar(clsInventario $obj){
-        $sql = "INSERT INTO Inventario(nombre,descripcion,fechaVencimiento,cantidad,fechaFabricacion,precio,idEmpFk,idLabFk) "
-        . "VALUES ('" . $obj->getNombre() . "','" . $obj->getDescripcion() . "','"  . 
-        $obj->getFechaVencimiento(). "','"  . $obj->getCantidad() . "','" . $obj->getFechaFabricacion() ."','" . 
-        $obj->getPrecio() . "','" . $obj->getIdEmpFk() . "','" . $obj->getIdLabFk() ."',)";
+        $sql = "INSERT INTO Inventario(nombreInv,descripcionInv,fechaVen,cantidad,fechaFab,precio,Empleado_idEmpleado,Laboratorio_idLaboratorio) "
+        . "VALUES ('" . $obj->getNombreInv() . "','" . $obj->getDescripcionInv() . "','"  . 
+        $obj->getFechaVen(). "','"  . $obj->getCantidad() . "','" . $obj->getFechaFab() ."'," . 
+        $obj->getPrecio() . "," . $obj->getEmpleado_idEmpleado() . "," . $obj->getLaboratorio_idLaboratorio() . ")";
         $this->objCon->ExecuteTransaction($sql);
     }
 
     public function buscar(clsInventario $obj){
-        $sql = "SELECT nombre,descripcion,fechaVencimiento,cantidad,fechaFabricacion,precio,idEmpFk,idLabFk from Laboratorio
-        where idLaboratorio = " . $obj->getIdLaboratorio() . "";
+        $sql = "SELECT idInventario,nombreInv,descripcionInv,fechaVen,cantidad,fechaFab,precio,Empleado_idEmpleado,Laboratorio_idLaboratorio from Inventario
+        where idInventario = " . $obj->getIdInventario() . "";
+        print($sql);
+        //$sql = "SELECT * from Inventario where idInventario = " . $obj->getIdInventario();
         $this->objCon->Execute($sql);
     }
 
     public function eliminar(clsInventario $obj)
     {
-        $sql = "DELETE from Laboratorio where idLaboratorio=" . $obj->getIdLaboratorio() . "";
+        $sql = "DELETE from Inventario where idInventario=" . $obj->getIdInventario() . "";
         $this->objCon->ExecuteTransaction($sql);
     }
 
     public function modificar(clsInventario $obj){
-        $sql = "UPDATE Laboratorio SET nombre='" . $obj->getNombre() . "',descripcion='" . 
-        $obj->getDescripcion() . "',fechaVencimiento='"  . $obj->getFechaVencimiento() . 
-        "',cantidad="  . $obj->getCantidad() . ",fechaFabricacion='"  . $obj->getFechaFabricacion() . 
-        "',precio="  . $obj->getPrecio() . ",idEmpFk="  . $obj->getIdEmpFk() . 
-        "',idLabFk="  . $obj->getLabFk() . "' where idInventario=" . $obj->getIdInventario() ."";
+        $sql = "UPDATE Inventario SET nombreInv='" . $obj->getNombreInv() . "',descripcionInv='" . 
+        $obj->getDescripcionInv() . "',fechaVen='"  . $obj->getFechaVencimiento() . 
+        "',cantidad="  . $obj->getCantidad() . ",fechaFab='"  . $obj->getFechaFabricacion() . 
+        "',precio="  . $obj->getPrecio() . ",Empleado_idEmpleado="  . $obj->getEmpleado_idEmpleado() . 
+        ",Laboratorio_idLaboratorio="  . $obj->getLaboratorio_idLaboratorio() . "' where idInventario=" . $obj->getIdInventario() ."";
         $this->objCon->ExecuteTransaction($sql);
     }
     
     public function listar(){
-        $sql = "SELECT nombre,descripcion,fechaVencimiento,cantidad,fechaFabricacion,precio,E.nombre,I.nombre from Inventario I
-        join Empleado E on I.idEmpFk = E.idEmpleado
-        join Laboratorio L on I.idEmpFk = L.idLaboratorio";
+        $sql = "SELECT idInventario,nombreInv,descripcionInv,fechaVen,cantidad,fechaFab,precio,E.nombres,L.nombreLab from Inventario I
+        join Empleado E on I.Empleado_idEmpleado = E.idEmpleado
+        join Laboratorio L on I.Laboratorio_idLaboratorio = L.idLaboratorio";
         $this->objCon->Execute($sql);
     }
 }
