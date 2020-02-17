@@ -4,6 +4,7 @@ $(document).ready(function() {
     $("#guardarEmp").click(guardarEmpleado);
     $("#eliminarEmp").click(eliminarEmpleado);
     $("#modificarEmp").click(guardarEmpleado);
+    $('#tbl_empleado').DataTable();
     listarEmpleados();
 });
 
@@ -122,8 +123,6 @@ function listarEmpleados() {
 
 function buscarEmpleado(codigo) {
     $("#idEmp").val(codigo);
-    console.log(codigo);
-
     const objEmp = {
         idEmpleado: $("#idEmp").val(),
         type: 'search'
@@ -132,10 +131,10 @@ function buscarEmpleado(codigo) {
         type: 'post',
         url: "controller/ctlEmpleado.php",
         beforeSend: function() {
-
         },
         data: objEmp,
         success: function(res) {
+            console.log(res);
             const info = JSON.parse(res);
             let data;
             if (info.res !== "NotInfo") {

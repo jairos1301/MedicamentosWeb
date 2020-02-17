@@ -2,18 +2,18 @@
 include "../model/clsInventario.php";
 include '../DAO/inventarioDAO.php';
 
-    $idInventario = isset($_POST['idLaboratorio']) ? $_POST['idLaboratorio'] : '';
-    $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : ''; 
-    $descripcion = isset($_POST['descripcion']) ? $_POST['descripcion'] : '';
+    $idInventario = isset($_POST['idInventario']) ? $_POST['idInventario'] : '';
+    $nombreInv = isset($_POST['nombreInv']) ? $_POST['nombreInv'] : ''; 
+    $descripcionInv = isset($_POST['descripcionInv']) ? $_POST['descripcionInv'] : '';
     $fechaVencimiento = isset($_POST['fechaVencimiento']) ? $_POST['fechaVencimiento'] : '';
     $cantidad = isset($_POST['cantidad']) ? $_POST['cantidad'] : '';
     $fechaFabricacion = isset($_POST['fechaFabricacion']) ? $_POST['fechaFabricacion'] : '';
     $precio = isset($_POST['precio']) ? $_POST['precio'] : '';
-    $idEmpFk = isset($_POST['idEmpFk']) ? $_POST['idEmpFk'] : '';
-    $idLabFk = isset($_POST['idLabFk']) ? $_POST['idLabFk'] : '';
+    $Empleado_idEmpleado = isset($_POST['Empleado_idEmpleado']) ? $_POST['Empleado_idEmpleado'] : '';
+    $Laboratorio_idLaboratorio = isset($_POST['Laboratorio_idLaboratorio']) ? $_POST['Laboratorio_idLaboratorio'] : '';
     $type = isset($_POST['type']) ? $_POST['type'] : "";
 
-    $inventario = new clsInventario($idInventario, $nombre, $descripcion, $fechaVencimiento, $cantidad, $fechaFabricacion, $precio, $idEmpFk, $idLabFk);
+    $inventario = new clsInventario($idInventario, $nombreInv, $descripcionInv, $fechaVencimiento, $cantidad, $fechaFabricacion, $precio, $Empleado_idEmpleado, $Laboratorio_idLaboratorio);
     $conex = new inventarioDAO();
 
 switch ($type) {

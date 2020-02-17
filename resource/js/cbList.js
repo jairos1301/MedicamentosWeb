@@ -1,3 +1,4 @@
+'use strict'
 $(document).ready(function() {
     listaEmpleados();
     listaLaboratorios();
@@ -16,7 +17,7 @@ function listaEmpleados() {
             const info = JSON.parse(res.data);
             var lista = "<option value='0'>---SELECCIONE---</option>";
             if (info.length > 0) {
-                for (k = 0; k < info.length; k++) {
+                for (let k = 0; k < info.length; k++) {
                     lista = lista + "<option value='" + info[k].idEmpleado + "'>" + info[k].nombres + "</option>";
                 }
                 $("#inputEmp").html(lista);
@@ -42,7 +43,7 @@ function listaLaboratorios() {
             const info = JSON.parse(res.data);
             var lista = "<option value='0'>---SELECCIONE---</option>";
             if (info.length > 0) {
-                for (k = 0; k < info.length; k++) {
+                for (let k = 0; k < info.length; k++) {
                     lista = lista + "<option value='" + info[k].idLaboratorio + "'>" + info[k].nombreLab + "</option>";
                 }
                 $("#inputLab").html(lista);
