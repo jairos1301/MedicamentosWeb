@@ -4,7 +4,6 @@ $(document).ready(function() {
     $("#guardarInv").click(guardarInventario);
     $("#eliminarInv").click(eliminarInventario);
     $("#modificarInv").click(guardarInventario);
-    $('#tbl_inventario').DataTable();
     listarInventario();
 });
 
@@ -75,7 +74,7 @@ function listarInventario() {
             var lista = "";
             if (info.length > 0) {
                 for (let k = 0; k < info.length; k++) {
-                    lista = lista + '<tr id="codigo" onclick="buscarInventario(' + info[k].idInventario + ')">';
+                    lista = lista + '<tr id="codigo" style="cursor: pointer;" onclick="buscarInventario(' + info[k].idInventario + ')">';
                     lista = lista + '<td>' + info[k].nombreInv + '</td>';
                     lista = lista + '<td>' + info[k].descripcionInv + '</td>';
                     lista = lista + '<td>' + info[k].fechaVen + '</td>';
@@ -90,6 +89,7 @@ function listarInventario() {
             } else {
                 $("#listarInventario").html("<tr><td>No se encuentra informacion</td>></tr>");
             }
+            $('#tbl_inventario').DataTable();
         },
         error: (jqXHR, textStatus, errorThrown) => {
             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
@@ -122,7 +122,7 @@ function buscarInventario(codigo) {
                 $("#fechaVenInv").val(data[0].fechaVen);
                 $("#cantidadInv").val(data[0].cantidad);
                 $("#fechaFabInv").val(data[0].fechaFab);
-                $("#precionInv").val(data[0].precio);
+                $("#precioInv").val(data[0].precio);
                 $("#inputEmp").val(data[0].Empleado_idEmpleado);
                 $("#inputLab").val(data[0].Laboratorio_idLaboratorio);
             } else {
@@ -177,7 +177,7 @@ function limpiarInventario() {
     $("#descripcionInv").val("");
     $("#cantidadInv").val("");
     $("#fechaFabInv").val("");
-    $("#precionInv").val("");
+    $("#precioInv").val("");
     $("#inputEmp").val(0);
     $("#inputLab").val(0);
 }
