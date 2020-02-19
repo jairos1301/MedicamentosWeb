@@ -4,7 +4,6 @@ $(document).ready(function() {
     $("#guardarEmp").click(guardarEmpleado);
     $("#eliminarEmp").click(eliminarEmpleado);
     $("#modificarEmp").click(guardarEmpleado);
-    $('#tbl_empleado').DataTable();
     listarEmpleados();
 });
 
@@ -73,7 +72,7 @@ function listarEmpleados() {
             var lista = "";
             if (info.length > 0) {
                 for (let k = 0; k < info.length; k++) {
-                    lista = lista + '<tr id="codigo" onclick="buscarEmpleado(' + info[k].idEmpleado + ')">';
+                    lista = lista + '<tr id="codigo" style="cursor: pointer;" onclick="buscarEmpleado(' + info[k].idEmpleado + ')">';
                     lista = lista + '<td>' + info[k].cedula + '</td>';
                     lista = lista + '<td>' + info[k].nombres + '</td>';
                     lista = lista + '<td>' + info[k].apellidos + '</td>';
@@ -85,6 +84,7 @@ function listarEmpleados() {
             } else {
                 $("#listarEmpleados").html("<tr><td>No se encuentra informacion</td>></tr>");
             }
+            $('#tbl_empleado').DataTable();
         },
         error: (jqXHR, textStatus, errorThrown) => {
             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
@@ -134,7 +134,6 @@ function buscarEmpleado(codigo) {
         },
         data: objEmp,
         success: function(res) {
-            console.log(res);
             const info = JSON.parse(res);
             let data;
             if (info.res !== "NotInfo") {
