@@ -31,5 +31,13 @@ switch ($type) {
     case "list":
         $conex->listar();
         break;
+    case "con":
+        $conex->login();
+        break;
+    case "desc":
+        session_destroy();
+        $mensaje=  "Sesion cerrada correctamente";
+        header('index.php?msjlogin=' . $mensaje);
+        break;
 }
 ?>

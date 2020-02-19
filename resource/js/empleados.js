@@ -134,7 +134,6 @@ function buscarEmpleado(codigo) {
         },
         data: objEmp,
         success: function(res) {
-            console.log(res);
             const info = JSON.parse(res);
             let data;
             if (info.res !== "NotInfo") {
