@@ -1,6 +1,9 @@
 <?php
     include("views/banner.php");
 ?>
+<head>
+    <script type="text/javascript" src="resource/js/login.js"></script>
+</head>
 <body>
     <div class="row">
         <div class="col-5 ml-5 mt-5">

@@ -16,14 +16,23 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="resource/jquery/jquery.js"></script>
+    <script type="text/javascript" src="resource/js/login.js"></script>
     
 </head>
 
 <body class="" id="page-top">
 
     <?php
-    if (isset($_GET['page'])) {
-        include('views/' . $_GET['page'] . ".php");
+
+    session_start();
+
+    if(isset($_REQUEST['msjlogin'])){
+        echo $_REQUEST['msjlogin'];
+    }
+
+    if (isset($_SESSION["user"])) {
+        include("views/masterPage.php");
     } else {
         include("views/vistaInventario.php");
     }

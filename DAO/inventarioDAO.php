@@ -20,8 +20,6 @@ class inventarioDAO {
     public function buscar(clsInventario $obj){
         $sql = "SELECT idInventario,nombreInv,descripcionInv,fechaVen,cantidad,fechaFab,precio,Empleado_idEmpleado,Laboratorio_idLaboratorio from Inventario
         where idInventario = " . $obj->getIdInventario() . "";
-        print($sql);
-        //$sql = "SELECT * from Inventario where idInventario = " . $obj->getIdInventario();
         $this->objCon->Execute($sql);
     }
 
@@ -36,7 +34,7 @@ class inventarioDAO {
         $obj->getDescripcionInv() . "',fechaVen='"  . $obj->getFechaVen() . 
         "',cantidad="  . $obj->getCantidad() . ",fechaFab='"  . $obj->getFechaFab() . 
         "',precio="  . $obj->getPrecio() . ",Empleado_idEmpleado="  . $obj->getEmpleado_idEmpleado() . 
-        ",Laboratorio_idLaboratorio="  . $obj->getLaboratorio_idLaboratorio() . "' where idInventario=" . $obj->getIdInventario() ."";
+        ",Laboratorio_idLaboratorio="  . $obj->getLaboratorio_idLaboratorio() . " where idInventario=" . $obj->getIdInventario() ."";
         $this->objCon->ExecuteTransaction($sql);
     }
     
