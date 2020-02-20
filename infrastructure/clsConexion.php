@@ -1,6 +1,7 @@
 <?php
 
-class clsConexion {
+class clsConexion
+{
 
     private $userbd;
     private $passworddb;
@@ -9,7 +10,8 @@ class clsConexion {
     private $host;
     private $connect;
 
-    public function conectar() {
+    public function conectar()
+    {
         $this->userbd = "root";
         $this->passworddb = "";
         $this->database = "medicamentos";
@@ -17,9 +19,12 @@ class clsConexion {
 
         try {
             /* Ultima linea de UTF8 es para evitar problemas con las acentuaciones y las Ñ */
-            $this->connect = new PDO("mysql:host=$this->host;dbname=$this->database", 
-                    $this->userbd, $this->passworddb, 
-                    array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+            $this->connect = new PDO(
+                "mysql:host=$this->host;dbname=$this->database",
+                $this->userbd,
+                $this->passworddb,
+                array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
+            );
             // set the PDO error mode to exception
             $this->connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             //echo "Connected successfully";
@@ -28,14 +33,26 @@ class clsConexion {
         }
     }
 
-    public function getConnect() {
+    public function getConnect()
+    {
         return $this->connect;
     }
 
-    
-    
-    
-    public function ExecuteTransaction($query) {
+    public function getLastInsertId()
+    {
+        $this->connect = new PDO(
+            "mysql:host=$this->host;dbname=$this->database",
+            $this->userbd,
+            $this->passworddb,
+            array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
+        );
+        return $this->connect->lastInsertId();
+    }
+
+
+
+    public function ExecuteTransaction($query)
+    {
         try {
             /* Le asigno la consulta SQL a la conexion de la base de datos */
             $resultado = $this->getConnect()->prepare($query);
@@ -44,18 +61,22 @@ class clsConexion {
             /* Si obtuvo resultados, entonces paselos a un vector */
 
             if ($resultado->rowCount() > 0) {
-                echo(json_encode(['res' => 'Success', "msj" => "Operacion exitosa"
+                echo (json_encode([
+                    'res' => 'Success', "msj" => "Operacion exitosa"
                 ]));
             } else {
-                echo(json_encode(['res' => 'Error', "msj" => "Error en la operacion"]));
+                echo (json_encode(['res' => 'Error', "msj" => "Error en la operacion"]));
             }
         } catch (PDOException $exception) {
-            echo(json_encode(['res' => 'Error', "msj" => "Error en la operacion",
-                'development' => $exception->getMessage(), 'sql' => $query]));
+            echo (json_encode([
+                'res' => 'Error', "msj" => "Error en la operacion",
+                'development' => $exception->getMessage(), 'sql' => $query
+            ]));
         }
     }
 
-    public function Execute($query) {
+    public function Execute($query)
+    {
         try {
             /* Le asigno la consulta SQL a la conexion de la base de datos */
             $resultado = $this->getConnect()->prepare($query);
@@ -67,9 +88,10 @@ class clsConexion {
             }
 
             if (isset($vec)) {
-                echo(json_encode(['msj' => 'Success',
-                    'data' => json_encode($vec)]));
-               
+                echo (json_encode([
+                    'msj' => 'Success',
+                    'data' => json_encode($vec)
+                ]));
             } else {
                 echo '{"res" : "NotInfo","msg":"No se encontro informacion","data":""}';
             }
@@ -80,5 +102,4 @@ class clsConexion {
             }';
         }
     }
-
 }

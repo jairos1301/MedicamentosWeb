@@ -11,10 +11,7 @@
                 <a class="nav-link" href="?page=vistaInventario">Inventario</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?page=">Venta</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="?page=">Disabled</a>
+                <a class="nav-link" href="index.php?page=venta">Venta</a>
             </li>
         </ul>
     </div>
