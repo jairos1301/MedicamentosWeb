@@ -8,9 +8,9 @@
                 <a class="nav-link" href="index.php?page=vistaInventario">Inventario</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.php?page=">Venta</a>
+                <a class="nav-link" href="index.php?page=venta">Venta</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item">   
                 <a class="nav-link disabled" href="index.php?page=">Disabled</a>
             </li>
         </ul>
