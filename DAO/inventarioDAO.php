@@ -14,6 +14,7 @@ class inventarioDAO {
         . "VALUES ('" . $obj->getNombreInv() . "','" . $obj->getDescripcionInv() . "','"  . 
         $obj->getFechaVen(). "','"  . $obj->getCantidad() . "','" . $obj->getFechaFab() ."'," . 
         $obj->getPrecio() . "," . $obj->getEmpleado_idEmpleado() . "," . $obj->getLaboratorio_idLaboratorio() . ")";
+        $sql = "select guardar_inv('".$obj->getNombreInv() ."','". $obj->getDescripcionInv() ."','". $obj->getFechaVen() .");";
         $this->objCon->ExecuteTransaction($sql);
     }
 
@@ -39,9 +40,7 @@ class inventarioDAO {
     }
     
     public function listar(){
-        $sql = "SELECT idInventario,nombreInv,descripcionInv,fechaVen,cantidad,fechaFab,precio,E.nombres,L.nombreLab from Inventario I
-        join Empleado E on I.Empleado_idEmpleado = E.idEmpleado
-        join Laboratorio L on I.Laboratorio_idLaboratorio = L.idLaboratorio";
+        $sql = "call listar_inventario(0)";
         $this->objCon->Execute($sql);
     }
 }

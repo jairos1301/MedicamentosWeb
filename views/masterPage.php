@@ -19,7 +19,6 @@
 </head>
 
 <body class="" id="page-top">
-
     <?php
     if (isset($_REQUEST['page'])) {
         include($_REQUEST['page'] . ".php");
