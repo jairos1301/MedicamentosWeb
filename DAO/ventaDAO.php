@@ -13,10 +13,7 @@ class ventaDAO
 
     public function listar()
     {
-        $sql = "SELECT v.fecha_venta as fecha,v.valor_total as valor,concat(c.nombres,' ',c.apellidos) as cliente,
-        concat(e.nombres,' ',e.apellidos) as empleado from venta v 
-        inner join cliente c on c.idCliente=v.Cliente_idCliente 
-        inner join empleado e on e.idEmpleado=v.Empleado_idEmpleado";
+        $sql = "call listar_ventas(0)";
         $this->objCon->Execute($sql);
     }
 
