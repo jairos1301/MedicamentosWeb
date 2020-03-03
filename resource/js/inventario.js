@@ -4,6 +4,7 @@ $(document).ready(function() {
     $("#guardarInv").click(guardarInventario);
     $("#eliminarInv").click(eliminarInventario);
     $("#modificarInv").click(guardarInventario);
+    $("#divInv").hide();
     listarInventario();
 });
 
@@ -42,6 +43,7 @@ function guardarInventario() {
             data: objInv,
             success: function(data) {
                 console.log(data);
+                
                 var info = JSON.parse(data);
                 if (info.res === "Success") {
                     limpiarInventario();
@@ -153,6 +155,8 @@ function eliminarInventario() {
             success: function(res) {
                 console.log(res);
                 var info = JSON.parse(res);
+                console.log(info.res);
+                
                 if (info.res == "Success") {
                     limpiarInventario();
                     alert("Eliminado con exito");
@@ -169,6 +173,15 @@ function eliminarInventario() {
         });
     }
 }
+
+$(document).on('click', '#inventario', function () {
+    $("#divInv").dialog({
+        draggable: false,
+        resizable: false,
+        width: "80%",
+        title: "Inventario"
+    });
+})
 
 function limpiarInventario() {
     $("#idInventario").val("");

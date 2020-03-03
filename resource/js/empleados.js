@@ -37,12 +37,11 @@ function guardarEmpleado() {
             beforeSend: function() {},
             data: objEmp,
             success: function(data) {
-                console.log(data);
                 var info = JSON.parse(data);
                 if (info.res === "Success") {
                     limpiarEmpleado();
-                    listarEmpleados();
                     alert("Operacion exitosa");
+                    listarEmpleados();
                 } else {
                     alert("No se pudo almacenar");
                 }
@@ -65,7 +64,6 @@ function listarEmpleados() {
 
         },
         data: { type: 'list' },
-
         success: function(respuesta) {
             const res = JSON.parse(respuesta);
             const info = JSON.parse(res.data);
@@ -174,15 +172,13 @@ function eliminarEmpleado() {
             },
             data: objEmp,
             success: function(res) {
-                console.log(res);
                 var info = JSON.parse(res);
                 if (info.res == "Success") {
                     limpiarEmpleado();
-                    alert("Eliminado con exito");
                     listarEmpleados();
+                    alert("Eliminado con exito");
                 } else {
                     alert("No se pudo eliminar");
-                    limpiarEmpleado();
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {

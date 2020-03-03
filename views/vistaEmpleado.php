@@ -44,7 +44,7 @@
         </div>
         <div class="col-6 mt-5 ml-auto mr-auto">
             <table class="table" id="tbl_empleado">
-                <thead class="thead-dark">
+                <thead class="bg-primary">
                     <tr>
                         <th scope="col">Cedula</th>
                         <th scope="col">Nombres</th>
