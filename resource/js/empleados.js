@@ -178,7 +178,7 @@ function eliminarEmpleado() {
                     listarEmpleados();
                     alert("Eliminado con exito");
                 } else {
-                    alert("No se pudo eliminar");
+                    alert("No se pudo eliminar tiene registros asociados");
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {

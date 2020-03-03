@@ -27,13 +27,14 @@ class empleadoDAO {
     public function eliminar(clsEmpleado $obj)
     {
         $arr = array($obj->getIdEmpleado());
-        $sql = $this->infra->estructura_sql("eliminar_empl", $arr);
+        $sql = $this->infra->estructura_sql("eliminar_emp", $arr);
+        // echo($sql);
         $this->objCon->ExecuteTransaction($sql);
     }
 
     public function modificar(clsEmpleado $obj){
         $arr = array($obj->getIdEmpleado(),$obj->getCedula(),$obj->getNombres(),$obj->getApellidos(),$obj->getCorreo(),$obj->getUsuario(),$obj->getPassword());
-        $sql = $this->infra->estructura_sql("modificar_empl", $arr);
+        $sql = $this->infra->estructura_sql("modificar_emple", $arr);
         $this->objCon->ExecuteTransaction($sql);
     }
     
