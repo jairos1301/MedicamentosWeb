@@ -11,7 +11,7 @@ $arrCant = isset($_POST['arrCant']) ? $_POST['arrCant'] : '';
 
 
 
-$venta= new clsVenta($total, $cliente, $empleado);
+$venta = new clsVenta($total, $cliente, $empleado, $arrInv, $arrCant);
 $conex = new ventaDAO();
 
 switch ($type) {

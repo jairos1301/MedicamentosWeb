@@ -3,10 +3,13 @@ class ventaDAO
 {
     private $con;
     private $objCon;
+    private $infra;
 
     function __construct()
     {
         require '../infrastructure/clsConexion.php';
+        require '../infrastructure/infraestructura.php';
+        $this->infra = new infraestructura();
         $this->objCon = new clsConexion();
         $this->con = $this->objCon->conectar();
     }
@@ -19,9 +22,10 @@ class ventaDAO
 
     public function guardar(clsVenta $obj)
     {
-        $sql = "INSERT INTO venta(valor_Total,Cliente_idCliente,Empleado_idEmpleado) "
-            . "VALUES (" . $obj->gettotal() . "," . $obj->getcliente() .
-            ","  . $obj->getempleado() . ")";
+        $arr = array($obj->gettotal(),$obj->getcliente(),$obj->getempleado(),$obj->getarrinv(),$obj->getarrcant());
+        $sql = $this->infra->estructura_sql("guardar_venta",$arr);
+        print_r($sql);
+        exit;
         $this->objCon->ExecuteTransaction($sql);
     }
 
