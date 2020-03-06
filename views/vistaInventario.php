@@ -3,7 +3,7 @@
 ?>
 <body>
     <div class="row">
-        <div class="ml-5 mt-5">
+        <div class="container mt-3">
         <form autocomplete="off">
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -50,10 +50,13 @@
                     </select>
                 </div>
             </div>
+            <div class="text-center">
             <button type="button" class="btn btn-primary" id="guardarInv">Guardar</button>
             <button type="button" class="btn btn-danger" id="eliminarInv">Eliminar</button>
             <button type="button" class="btn btn-success" id="modificarInv">Modificar</button>
             <button type="button" class="btn btn-danger mr-auto" id="inventario">Lista Inventario</button>
+            <button type="button" class="btn btn-dark mr-auto" id="devolucion">Devolución</button>
+            </div>
         </form>
         </div>
         <div id="divInv">
@@ -71,6 +74,24 @@
                     </tr>
                 </thead>
                 <tbody id="listarInventario">
+                </tbody>
+            </table>
+        </div>
+        <div id="dialog_devo">
+            <table class="table" id="tbl_devo">
+                <thead class="bg-primary">
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Fecha/Ven</th>
+                        <th scope="col">Cant</th>
+                        <th scope="col">Fecha/Fab</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Empleado</th>
+                        <th scope="col">Lab</th>
+                    </tr>
+                </thead>
+                <tbody id="listardevo">
                 </tbody>
             </table>
         </div>

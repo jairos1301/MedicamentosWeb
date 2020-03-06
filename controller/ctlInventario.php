@@ -32,5 +32,7 @@ switch ($type) {
     case "list":
         $conex->listar();
         break;
+    case "devo":
+        $conex->devo($inventario);
+        break;
 }
-?>

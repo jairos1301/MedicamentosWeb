@@ -1,12 +1,119 @@
 'use strict'
 
-$(document).ready(function() {
+$(document).ready(function () {
     $("#guardarInv").click(guardarInventario);
     $("#eliminarInv").click(eliminarInventario);
     $("#modificarInv").click(guardarInventario);
     $("#divInv").hide();
+    $("#dialog_devo").hide();
     listarInventario();
+    listarDevo();
+
+    $(document).on('click', '#devolucion', function () {
+        $("#dialog_devo").dialog({
+            draggable: false,
+            resizable: false,
+            width: "80%",
+            title: "Devolución"
+        });
+    })
 });
+
+function listarDevo() {
+    $.ajax({
+        type: 'post',
+        url: "controller/ctlInventario.php",
+        beforeSend: function () {
+        },
+        data: { type: 'list' },
+        success: function (respuesta) {
+            const res = JSON.parse(respuesta);
+            const info = JSON.parse(res.data);
+            var lista = "";
+            if (info.length > 0) {
+                for (let k = 0; k < info.length; k++) {
+                    lista = lista + '<tr id="codigo" style="cursor: pointer;" onclick="devolver(' + info[k].idInventario + ',' + info[k].cantidad + ')">';
+                    lista = lista + '<td>' + info[k].nombreInv + '</td>';
+                    lista = lista + '<td>' + info[k].descripcionInv + '</td>';
+                    lista = lista + '<td>' + info[k].fechaVen + '</td>';
+                    lista = lista + '<td>' + info[k].cantidad + '</td>';
+                    lista = lista + '<td>' + info[k].fechaFab + '</td>';
+                    lista = lista + '<td>' + info[k].precio + '</td>';
+                    lista = lista + '<td>' + info[k].nombres + '</td>';
+                    lista = lista + '<td>' + info[k].nombreLab + '</td>';
+                    lista = lista + '</tr>';
+                }
+                $("#listardevo").html(lista);
+            } else {
+                $("#listardevo").html("<tr><td>No se encuentra informacion</td>></tr>");
+            }
+            $('#tbl_devo').DataTable({
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+                    "sInfo": "Mostrando del _START_ al _END_ de _TOTAL_ ",
+                    "sInfoEmpty": "Mostrando del 0 al 0 de un total de 0 ",
+                    "sInfoFiltered": "(filtrado de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },
+                    "buttons": {
+                        "copy": "Copiar",
+                        "colvis": "Visibilidad"
+                    }
+                }
+            });
+        },
+        error: (jqXHR, textStatus, errorThrown) => {
+            alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
+            alert("verifique la ruta de archivo!");
+        }
+    });
+}
+
+function devolver(id, cant) {
+    var cantidad = prompt("Cuantas unidades se devuelven");
+    if (cantidad > 0) {
+        cant += parseInt(cantidad);
+        $.ajax({
+            type: 'post',
+            url: "controller/ctlInventario.php",
+            beforeSend: function () { },
+            data: "type=devo&idInventario=" + id + "&cantidad=" + cant,
+            success: function (data) {
+                console.log(data);
+
+                var info = JSON.parse(data);
+                if (info.res === "Success") {
+                    alert("Operacion exitosa");
+                    location.reload();
+                } else {
+                    alert("No se pudo almacenar");
+                }
+            },
+            error: (jqXHR, textStatus, errorThrown) => {
+                alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
+                alert("verifique la ruta de archivo!");
+            }
+        });
+    } else {
+        alert('Ingrese un valor mayor a cero');
+    }
+}
 
 function guardarInventario() {
     let objInv = {
@@ -29,7 +136,7 @@ function guardarInventario() {
         objInv.fechaFabricacion !== "" &&
         objInv.precio !== "" &&
         objInv.Empleado_idEmpleado !== "" &&
-        objInv.Laboratorio_idLaboratorio !== "" 
+        objInv.Laboratorio_idLaboratorio !== ""
     ) {
         if (objInv.idInventario !== "") {
             objInv.type = 'update';
@@ -39,11 +146,11 @@ function guardarInventario() {
         $.ajax({
             type: 'post',
             url: "controller/ctlInventario.php",
-            beforeSend: function() {},
+            beforeSend: function () { },
             data: objInv,
-            success: function(data) {
+            success: function (data) {
                 console.log(data);
-                
+
                 var info = JSON.parse(data);
                 if (info.res === "Success") {
                     limpiarInventario();
@@ -67,10 +174,10 @@ function listarInventario() {
     $.ajax({
         type: 'post',
         url: "controller/ctlInventario.php",
-        beforeSend: function() {
+        beforeSend: function () {
         },
         data: { type: 'list' },
-        success: function(respuesta) {
+        success: function (respuesta) {
             const res = JSON.parse(respuesta);
             const info = JSON.parse(res.data);
             var lista = "";
@@ -91,7 +198,36 @@ function listarInventario() {
             } else {
                 $("#listarInventario").html("<tr><td>No se encuentra informacion</td>></tr>");
             }
-            $('#tbl_inventario').DataTable();
+            $('#tbl_inventario').DataTable({
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+                    "sInfo": "Mostrando del _START_ al _END_ de _TOTAL_ ",
+                    "sInfoEmpty": "Mostrando del 0 al 0 de un total de 0 ",
+                    "sInfoFiltered": "(filtrado de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },
+                    "buttons": {
+                        "copy": "Copiar",
+                        "colvis": "Visibilidad"
+                    }
+                }
+            });
         },
         error: (jqXHR, textStatus, errorThrown) => {
             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
@@ -109,10 +245,10 @@ function buscarInventario(codigo) {
     $.ajax({
         type: 'post',
         url: "controller/ctlInventario.php",
-        beforeSend: function() {
+        beforeSend: function () {
         },
         data: objInv,
-        success: function(res) {
+        success: function (res) {
             const info = JSON.parse(res);
             let data;
             if (info.res !== "NotInfo") {
@@ -148,15 +284,15 @@ function eliminarInventario() {
         $.ajax({
             type: 'post',
             url: "controller/ctlInventario.php",
-            beforeSend: function() {
+            beforeSend: function () {
 
             },
             data: objInv,
-            success: function(res) {
+            success: function (res) {
                 console.log(res);
                 var info = JSON.parse(res);
                 console.log(info.res);
-                
+
                 if (info.res == "Success") {
                     limpiarInventario();
                     alert("Eliminado con exito");

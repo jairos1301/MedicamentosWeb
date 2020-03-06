@@ -10,7 +10,7 @@ class loginDAO {
     }
 
     public function login(clsLogin $obj){
-        $sql = "SELECT usuario,password from Empleado where "
+        $sql = "SELECT usuario,password,idEmpleado from Empleado where "
         . "usuario='" . $obj->getUsuario() . "' and " 
         . "password='" . $obj->getPassword() . "'";
         $resultado = $this->objCon->getConnect()->prepare($sql);
@@ -22,6 +22,7 @@ class loginDAO {
         if (isset($vec)) {
             session_start();
             $_SESSION["user"] = $vec[0]['usuario'];
+            $_SESSION["id"] = $vec[0]['idEmpleado'];
             header('location:../index.php');
         } else {
             $mensaje = "El usuario ingresado no existe";

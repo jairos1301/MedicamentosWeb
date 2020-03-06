@@ -82,7 +82,36 @@ function listarEmpleados() {
             } else {
                 $("#listarEmpleados").html("<tr><td>No se encuentra informacion</td>></tr>");
             }
-            $('#tbl_empleado').DataTable();
+            $("#tbl_empleado").DataTable({
+                "language" : {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+                    "sInfo": "Mostrando del _START_ al _END_ de _TOTAL_ ",
+                    "sInfoEmpty": "Mostrando del 0 al 0 de un total de 0 ",
+                    "sInfoFiltered": "(filtrado de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },
+                    "buttons": {
+                        "copy": "Copiar",
+                        "colvis": "Visibilidad"
+                    }
+                }
+            });
         },
         error: (jqXHR, textStatus, errorThrown) => {
             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
@@ -90,34 +119,6 @@ function listarEmpleados() {
         }
     });
 }
-
-// function listFincas() {
-//     $.ajax({
-//         type: 'post',
-//         url: "controller/ctlList.php",
-//         beforeSend: function() {
-
-//         },
-//         data: { type: 'loadListFincas' },
-//         success: function(respuesta) {
-//             const res = JSON.parse(respuesta);
-//             const info = JSON.parse(res.data);
-//             var lista = "<option value='0'>---SELECCIONE---</option>";
-//             if (info.length > 0) {
-//                 for (k = 0; k < info.length; k++) {
-//                     lista = lista + "<option value='" + info[k].idFinca + "'>" + info[k].nombreFinca + "</option>";
-//                 }
-//                 $("#selFincasU").html(lista);
-//             } else {
-
-//             }
-//         },
-//         error: (jqXHR, textStatus, errorThrown) => {
-//             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-//             alert("verifique la ruta de archivo!");
-//         }
-//     });
-// }
 
 function buscarEmpleado(codigo) {
     $("#idEmp").val(codigo);
