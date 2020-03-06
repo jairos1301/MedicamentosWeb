@@ -6,7 +6,7 @@ include("banner.php");
 <div class="row">
     <div class="col-6">
         <div class="row">
-            <div class="col-4 offset-1">
+            <div class="col-10 offset-1">
                 <table id="tbl_medicamentos" class="table table-condensed">
                     <thead>
                         <tr>
@@ -23,7 +23,7 @@ include("banner.php");
             </div>
         </div>
     </div>
-    <div class="col-5">
+    <div class="col-5" id="div_carrito">
         <div class="row">
             <div class="col-11">
                 <div class="card">

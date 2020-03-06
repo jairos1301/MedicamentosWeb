@@ -8,6 +8,7 @@ $(document).ready(function () {
     listaClientes();
     $("#dialog_cliente").hide();
     $("#dialog_venta").hide();
+    $("#div_carrito").hide();
 
 
 
@@ -35,31 +36,35 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#vender', function () {
-        var arrCant = [];
-        $(".cantidad_venta").each(function(){
-            arrCant.push(parseInt($(this).val()));
-        })
-        $.ajax({
-            type: 'post',
-            url: "controller/ctlVenta.php",
-            beforeSend: function () {
-            },
-            data: "type=save&total=" + parseInt($("#total_venta").html()) + "&cliente=" + $("#cliente").val() + "&empleado=1&arrInv=" + arrInv+"&arrCant="+arrCant,
-            success: function (respuesta) {
-                var info = JSON.parse(respuesta);
-                if (info.res === "Success") {
-                    listaClientes();
-                    alert("Operacion exitosa");
-                } else {
-                    alert("No se pudo almacenar");
+        if ($("#cliente").val()) {
+            var arrCant = [];
+            $(".cantidad_venta").each(function () {
+                arrCant.push(parseInt($(this).val()));
+            })
+            $.ajax({
+                type: 'post',
+                url: "controller/ctlVenta.php",
+                beforeSend: function () {
+                },
+                data: "type=save&total=" + parseInt($("#total_venta").html()) + "&cliente=" + $("#cliente").val() + "&empleado=1&arrInv=" + arrInv + "&arrCant=" + arrCant,
+                success: function (respuesta) {
+                    var info = JSON.parse(respuesta);
+                    if (info.res === "Success") {
+                        listaClientes();
+                        alert("Operacion exitosa");
+                    } else {
+                        alert("No se pudo almacenar");
+                    }
+                    location.reload();
+                },
+                error: (jqXHR, textStatus, errorThrown) => {
+                    alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
+                    alert("verifique la ruta de archivo!");
                 }
-                location.reload();
-            },
-            error: (jqXHR, textStatus, errorThrown) => {
-                alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-                alert("verifique la ruta de archivo!");
-            }
-        });
+            });
+        } else {
+            alert('Debe seleccionar un cliente');
+        }
     })
 
     $(document).on('submit', '#form_cliente', function (e) {
@@ -75,6 +80,7 @@ $(document).ready(function () {
                 if (info.res === "Success") {
                     listaClientes();
                     alert("Operacion exitosa");
+                    $("#dialog_cliente").dialog('close');
                 } else {
                     alert("No se pudo almacenar");
                 }
@@ -110,18 +116,49 @@ function listarMedicamentos() {
             var lista = "";
             if (info.length > 0) {
                 for (let k = 0; k < info.length; k++) {
-                    lista = lista + '<tr data-nombre="' + info[k].nombreInv + '" value="' + info[k].idInventario + '" onclick="agrega_venta(' + info[k].idInventario + ',' + info[k].cantidad + ',' + info[k].precio + ')">';
-                    lista = lista + '<td>' + info[k].nombreInv + '</td>';
-                    lista = lista + '<td>' + info[k].nombreLab + '</td>';
-                    lista = lista + '<td>' + info[k].cantidad + '</td>';
-                    lista = lista + '<td>' + info[k].precio + '</td>';
-                    lista = lista + '</tr>';
+                    if (info[k].cantidad > 0) {
+                        lista = lista + '<tr data-nombre="' + info[k].nombreInv + '" value="' + info[k].idInventario + '" onclick="agrega_venta(' + info[k].idInventario + ',' + info[k].cantidad + ',' + info[k].precio + ')">';
+                        lista = lista + '<td>' + info[k].nombreInv + '</td>';
+                        lista = lista + '<td>' + info[k].nombreLab + '</td>';
+                        lista = lista + '<td>' + info[k].cantidad + '</td>';
+                        lista = lista + '<td>' + info[k].precio + '</td>';
+                        lista = lista + '</tr>';
+                    }
                 }
                 $("#body_medicamentos").html(lista);
             } else {
                 $("#body_medicamentos").html("<tr><td>No se encuentra informacion</td>></tr>");
             }
-            $("#tbl_medicamentos").DataTable();
+            $("#tbl_medicamentos").DataTable({
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+                    "sInfo": "Mostrando del _START_ al _END_ de _TOTAL_ ",
+                    "sInfoEmpty": "Mostrando del 0 al 0 de un total de 0 ",
+                    "sInfoFiltered": "(filtrado de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },
+                    "buttons": {
+                        "copy": "Copiar",
+                        "colvis": "Visibilidad"
+                    }
+                }
+            });
         },
         error: (jqXHR, textStatus, errorThrown) => {
             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
@@ -147,6 +184,11 @@ function actualiza_total() {
         total += parseInt($(this).html());
     });
     $("#total_venta").html(total);
+    if (total > 0) {
+        $("#div_carrito").show(500);
+    } else {
+        $("#div_carrito").hide(500);
+    }
 }
 
 function listaClientes() {
@@ -197,9 +239,38 @@ function listarVentas() {
                 }
                 $("#body_ventas").html(lista);
             } else {
-                $("#body_ventas").html("<tr><td>No se encuentra informacion</td>></tr>");
+                $("#body_ventas").html("<tr><td>No se encuentra informacion</td></tr>");
             }
-            $("#tbl_ventas").DataTable();
+            $("#tbl_ventas").DataTable({
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla =(",
+                    "sInfo": "Mostrando del _START_ al _END_ de _TOTAL_ ",
+                    "sInfoEmpty": "Mostrando del 0 al 0 de un total de 0 ",
+                    "sInfoFiltered": "(filtrado de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },
+                    "buttons": {
+                        "copy": "Copiar",
+                        "colvis": "Visibilidad"
+                    }
+                }
+            });
         },
         error: (jqXHR, textStatus, errorThrown) => {
             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);

@@ -34,7 +34,7 @@ class empleadoDAO {
 
     public function modificar(clsEmpleado $obj){
         $arr = array($obj->getIdEmpleado(),$obj->getCedula(),$obj->getNombres(),$obj->getApellidos(),$obj->getCorreo(),$obj->getUsuario(),$obj->getPassword());
-        $sql = $this->infra->estructura_sql("modificar_emple", $arr);
+        $sql = $this->infra->estructura_sql("modificar_empl", $arr);
         $this->objCon->ExecuteTransaction($sql);
     }
     

@@ -1,6 +1,7 @@
 <?php
 class ventaDAO
 {
+    
     private $con;
     private $objCon;
     private $infra;
@@ -16,20 +17,15 @@ class ventaDAO
 
     public function listar()
     {
-        $sql = "call listar_ventas(0)";
+        $sql = $this->infra->estructura_sql("listar_ventas", array(0), 1);
         $this->objCon->Execute($sql);
     }
 
     public function guardar(clsVenta $obj)
     {
-        $arr = array($obj->gettotal(),$obj->getcliente(),$obj->getempleado(),$obj->getarrinv(),$obj->getarrcant());
+        $arr = array($obj->gettotal(),$obj->getcliente(),$obj->getempleado(),$obj->getarrinv().",",$obj->getarrcant().",");
         $sql = $this->infra->estructura_sql("guardar_venta",$arr);
-        print_r($sql);
-        exit;
         $this->objCon->ExecuteTransaction($sql);
     }
 
-    public function getLastId(){
-        return $this->objCon->getLastInsertId();
-    }
 }
