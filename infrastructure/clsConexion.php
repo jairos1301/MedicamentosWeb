@@ -38,15 +38,23 @@ class clsConexion
         return $this->connect;
     }
 
-    public function getLastInsertId()
+    public function getReport($sql)
     {
-        $this->connect = new PDO(
+        $a= new PDO(
             "mysql:host=$this->host;dbname=$this->database",
             $this->userbd,
             $this->passworddb,
             array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
         );
-        return $this->connect->lastInsertId();
+        $resultado = $a->prepare($sql);
+        /* Executo la consulta */
+        $resultado->execute();
+        /* Si obtuvo resultados, entonces paselos a un vector */
+        if ($resultado->rowCount() > 0) {
+            $vec = $resultado->fetchAll(PDO::FETCH_ASSOC);
+            return $vec;
+        }
+        return 0;
     }
 
 
@@ -101,5 +109,18 @@ class clsConexion
                 "res" : "' . $exception . '"
             }';
         }
+    }
+
+    public function Execute_rpt($query){
+        $resultado = $this->getConnect()->prepare($query);
+        /* Executo la consulta */
+        $resultado->execute();
+        /* Si obtuvo resultados, entonces paselos a un vector */
+        if ($resultado->rowCount() > 0) {
+            $vec = $resultado->fetchAll(PDO::FETCH_ASSOC);
+            return $vec;
+        }
+        return 0;
+
     }
 }

@@ -9,8 +9,7 @@ $(document).ready(function () {
     $("#dialog_cliente").hide();
     $("#dialog_venta").hide();
     $("#div_carrito").hide();
-
-
+    $("#div_rpt_detalle").hide();
 
     $(document).on('click', '.btn_elimina', function () {
         $("tr[value=" + this.value + "][class='tr_venta']").remove();
@@ -130,7 +129,8 @@ $(document).ready(function () {
             width: "60%",
             title: "Ventas realizadas"
         });
-    })
+    });
+
 });
 
 function listarMedicamentos() {
@@ -253,6 +253,11 @@ function listaClientes() {
     });
 }
 
+function detalle_venta(id){
+    $("#vwhere").val(id);
+    $("#formDetalle").submit();
+}
+
 function listarVentas() {
     $.ajax({
         type: 'post',
@@ -266,7 +271,7 @@ function listarVentas() {
             var lista = "";
             if (info.length > 0) {
                 for (let k = 0; k < info.length; k++) {
-                    lista = lista + '<tr>';
+                    lista = lista + '<tr class="tr_realizadas" onClick=detalle_venta('+ info[k].id+')>';
                     lista = lista + '<td>' + info[k].fecha + '</td>';
                     lista = lista + '<td>' + info[k].valor + '</td>';
                     lista = lista + '<td>' + info[k].cliente + '</td>';

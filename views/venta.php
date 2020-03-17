@@ -122,4 +122,18 @@ include("banner.php");
 
         </tbody>
     </table>
+    <form name="formPDF" method="post" action="./reporte/gestionPDF.php" target="_blank">
+        <input type="hidden" name="nombre" value="venta">
+        <input type="hidden" name="nombre_rpt" value="VENTAS">
+        <input type="submit" value="Generar PDF">
+    </form>
+</div>
+<div id="div_rpt_detalle">
+    <form name="formPDF" id="formDetalle" method="post" action="./reporte/gestionPDF.php" target="_blank">
+        <input type="hidden" name="rpt" value="detalle">
+        <input type="hidden" name="vwhere" id="vwhere" value="">
+        <input type="hidden" name="nombre" value="venta">
+        <input type="hidden" name="nombre_rpt" value="DETALLE DE VENTAS">
+        <input type="submit" value="Generar PDF">
+    </form>
 </div>
