@@ -6,7 +6,13 @@ function validarLogin(fl,tipo) {
         if (fl.usuario.value !== "" && fl.password.value !== "") {
             fl.submit();
         } else {
-            alert('Ingrese todos los datos');
+            Swal.fire({
+                title: 'Cuidado!',
+                text: 'Ingrese toda la información.',
+                icon: 'warning',
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
     } else {
         fl.submit();
