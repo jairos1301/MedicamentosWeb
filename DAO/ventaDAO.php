@@ -28,4 +28,16 @@ class ventaDAO
         $this->objCon->ExecuteTransaction($sql);
     }
 
+    public function generar_rpt(){
+        $sql = $this->infra->estructura_sql("reporte",array('venta',''), 1);
+        $data = $this->objCon->Execute_rpt($sql);
+        return $data;
+    }
+
+    public function generar_rptdet($vwhere){
+        $sql = $this->infra->estructura_sql("reporte",array('detalle',$vwhere), 1);
+        $data = $this->objCon->Execute_rpt($sql);
+        return $data;
+    }
+
 }
