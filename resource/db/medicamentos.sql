@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-03-2020 a las 05:22:17
+-- Tiempo de generación: 17-03-2020 a las 22:27:15
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -59,7 +59,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_cliente` (IN `vidcliente` IN
     END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_ventas` (IN `vidiventa` INT)  BEGIN
-SELECT v.fecha_venta as fecha,v.valor_total as valor,concat(c.nombres,' ',c.apellidos) as cliente,
+SELECT idVenta as id,v.fecha_venta as fecha,v.valor_total as valor,concat(c.nombres,' ',c.apellidos) as cliente,
         concat(e.nombres,' ',e.apellidos) as empleado from venta v 
         inner join cliente c on c.idCliente=v.Cliente_idCliente 
         inner join empleado e on e.idEmpleado=v.Empleado_idEmpleado;
@@ -100,6 +100,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `lista_laboratorios` ()  BEGIN
         Laboratorio
     ORDER BY
         idLaboratorio ;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `reporte` (IN `rpt` VARCHAR(50), IN `vwhere` INT)  BEGIN
+IF rpt = 'venta' THEN
+SELECT v.fecha_venta as Fecha,v.valor_total as Valor,concat(c.nombres,' ',c.apellidos) as Cliente,concat(e.nombres,' ',e.apellidos) as Empleado from venta v inner join cliente c on c.idCliente=v.Cliente_idCliente inner join empleado e on e.idEmpleado=v.Empleado_idEmpleado;
+ELSEIF rpt = 'detalle' THEN
+select i.nombreInv as Medicamento,d.cantidad as Cantidad,i.precio*d.cantidad as 'Precio' from detalleventa d inner join inventario i on i.idInventario=d.inventario where d.idVenta=vwhere;
+END IF;
 END$$
 
 --
@@ -428,7 +436,7 @@ CREATE TABLE `inventario` (
 --
 
 INSERT INTO `inventario` (`idInventario`, `nombreInv`, `descripcionInv`, `fechaVen`, `cantidad`, `fechaFab`, `precio`, `Empleado_idEmpleado`, `Laboratorio_idLaboratorio`) VALUES
-(1, 'Acetaminofen', 'asddddd', '2020-08-23', 15, '2019-10-24', 2500, 1, 3),
+(1, 'Acetaminofen', 'asddddd', '2020-08-23', 18, '2019-10-24', 2500, 1, 3),
 (2, 'Dolex', 'sadsadsa', '2020-02-14', 6, '2020-02-13', 4000, 1, 3),
 (3, 'Esomeprazol', 'no tiene descripcion', '2020-01-01', 0, '2019-04-05', 3600, 1, 1),
 (4, 'Scott', '1asd', '2020-03-12', 0, '2020-03-20', 2500, 1, 3),
