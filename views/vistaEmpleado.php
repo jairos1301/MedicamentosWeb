@@ -43,6 +43,11 @@ include("views/banner.php");
                 <button type="button" class="btn btn-danger" id="eliminarEmp">Eliminar</button>
                 <button type="button" class="btn btn-success" id="modificarEmp">Modificar</button>
             </form>
+            <form name="formPDF" method="post" action="./reporte/gestionPDF.php" target="_blank">
+                <input type="hidden" name="nombre" value="empleado">
+                <input type="hidden" name="nombre_rpt" value="EMPLEADOS">
+                <input type="submit" class="btn btn-info" value="Generar PDF">
+            </form>
         </div>
         <div class="col-6 mt-5 ml-auto mr-auto">
             <table class="table table-condensed" id="tbl_empleado">

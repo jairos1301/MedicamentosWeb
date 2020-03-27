@@ -106,9 +106,13 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `reporte` (IN `rpt` VARCHAR(50), IN 
 IF rpt = 'venta' THEN
 SELECT v.fecha_venta as Fecha,v.valor_total as Valor,concat(c.nombres,' ',c.apellidos) as Cliente,concat(e.nombres,' ',e.apellidos) as Empleado from venta v inner join cliente c on c.idCliente=v.Cliente_idCliente inner join empleado e on e.idEmpleado=v.Empleado_idEmpleado;
 ELSEIF rpt = 'detalle' THEN
-select i.nombreInv as Medicamento,d.cantidad as Cantidad,i.precio*d.cantidad as 'Precio' from detalleventa d inner join inventario i on i.idInventario=d.inventario where d.idVenta=vwhere;
+SELECT i.nombreInv as Medicamento,d.cantidad as Cantidad,i.precio*d.cantidad as 'Precio' from detalleventa d inner join inventario i on i.idInventario=d.inventario where d.idVenta=vwhere;
+ELSEIF rpt = 'empleado' THEN
+SELECT cedula as Cedula, concat(nombres,' ',apellidos) as Empleado, correo as Correo, usuario as Usuario from empleado;
+ELSEIF rpt = 'inventario' THEN
+SELECT i.nombreInv as Medicamento, i.descripcionInv as Descripcion, i.fechaVen as Vencimiento, i.cantidad as Cantidad, i.fechaFab as Fabricacion, i.precio as Precio, l.nombreLab as Laboratorio FROM inventario i INNER JOIN laboratorio l ON i.Laboratorio_idLaboratorio = l.idLaboratorio;
 END IF;
-END$$
+END
 
 --
 -- Funciones

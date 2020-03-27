@@ -58,6 +58,11 @@
             <button type="button" class="btn btn-dark mr-auto" id="devolucion">Devolución</button>
             </div>
         </form>
+        <form name="formPDF" method="post" action="./reporte/gestionPDF.php" target="_blank">
+            <input type="hidden" name="nombre" value="inventario">
+            <input type="hidden" name="nombre_rpt" value="INVENTARIO">
+            <input type="submit" class="btn btn-info" value="Generar PDF">
+        </form>
         </div>
         <div id="divInv">
             <table class="table" id="tbl_empleado">
