@@ -61,4 +61,10 @@ class inventarioDAO
         $data = $this->objCon->Execute_rpt($sql);
         return $data;
     }
+
+    public function generar_rpt_csv(){
+        $sql = $this->infra->estructura_sql("reporte",array('inventario',''), 1);
+        $data = $this->objCon->Execute_rpt($sql);
+        return $data;
+    }
 }

@@ -56,6 +56,7 @@
             <button type="button" class="btn btn-success" id="modificarInv">Modificar</button>
             <button type="button" class="btn btn-danger mr-auto" id="inventario">Lista Inventario</button>
             <button type="button" class="btn btn-dark mr-auto" id="devolucion">Devolución</button>
+            <button type="button" class="btn btn-info" id="rpt_csv_inv">Generar CSV</button>
             </div>
         </form>
         <form name="formPDF" method="post" action="./reporte/gestionPDF.php" target="_blank">
@@ -63,6 +64,20 @@
             <input type="hidden" name="nombre_rpt" value="INVENTARIO">
             <input type="submit" class="btn btn-info" value="Generar PDF">
         </form>
+        </div>
+        <div id="dialog_inv">
+            <form name="formCSV_inv1" method="post" action="./reporte/gestionCSV.php" target="_blank">
+                <input type="hidden" name="separator" value=",">
+                <input type="hidden" name="nombre" value="inventario">
+                <input type="hidden" name="nombre_rpt" value="INVENTARIO"> 
+                <input type="submit" class="btn btn-primary" value="Separar por ','">
+            </form>
+            <form name="formCSV_inv2" method="post" action="./reporte/gestionCSV.php" target="_blank">
+                <input type="hidden" name="separator" value=";">
+                <input type="hidden" name="nombre" value="inventario">
+                <input type="hidden" name="nombre_rpt" value="INVENTARIO">   
+                <input type="submit" class="btn btn-primary" value="Separar por ';'">
+            </form>
         </div>
         <div id="divInv">
             <table class="table" id="tbl_empleado">

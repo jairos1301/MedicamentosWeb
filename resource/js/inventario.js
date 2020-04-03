@@ -4,6 +4,7 @@ $(document).ready(function () {
     $("#guardarInv").click(guardarInventario);
     $("#eliminarInv").click(eliminarInventario);
     $("#modificarInv").click(guardarInventario);
+    $("#dialog_inv").hide();
     $("#divInv").hide();
     $("#dialog_devo").hide();
     listarInventario();
@@ -16,7 +17,16 @@ $(document).ready(function () {
             width: "80%",
             title: "Devolución"
         });
-    })
+    });
+
+    $(document).on('click', '#rpt_csv_inv', function () {
+        $("#dialog_inv").dialog({
+            draggable: false,
+            resizable: false,
+            width: "40%",
+            title: "Generar Reporte CSV"
+        });
+    });
 });
 
 function listarDevo() {
