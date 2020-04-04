@@ -1,6 +1,6 @@
 'use strict'
 
-$(document).ready(function() {
+$(document).ready(function () {
     $("#guardarEmp").click(guardarEmpleado);
     $("#eliminarEmp").click(eliminarEmpleado);
     $("#modificarEmp").click(guardarEmpleado);
@@ -45,9 +45,9 @@ function guardarEmpleado() {
         $.ajax({
             type: 'post',
             url: "controller/ctlEmpleado.php",
-            beforeSend: function() {},
+            beforeSend: function () { },
             data: objEmp,
-            success: function(data) {
+            success: function (data) {
                 var info = JSON.parse(data);
                 if (info.res === "Success") {
                     limpiarEmpleado();
@@ -89,11 +89,11 @@ function listarEmpleados() {
     $.ajax({
         type: 'post',
         url: "controller/ctlEmpleado.php",
-        beforeSend: function() {
+        beforeSend: function () {
 
         },
         data: { type: 'list' },
-        success: function(respuesta) {
+        success: function (respuesta) {
             const res = JSON.parse(respuesta);
             const info = JSON.parse(res.data);
             var lista = "";
@@ -112,7 +112,7 @@ function listarEmpleados() {
                 $("#listarEmpleados").html("<tr><td>No se encuentra informacion</td>></tr>");
             }
             $("#tbl_empleado").DataTable({
-                "language" : {
+                "language": {
                     "sProcessing": "Procesando...",
                     "sLengthMenu": "Mostrar _MENU_",
                     "sZeroRecords": "No se encontraron resultados",
@@ -158,10 +158,10 @@ function buscarEmpleado(codigo) {
     $.ajax({
         type: 'post',
         url: "controller/ctlEmpleado.php",
-        beforeSend: function() {
+        beforeSend: function () {
         },
         data: objEmp,
-        success: function(res) {
+        success: function (res) {
             const info = JSON.parse(res);
             let data;
             if (info.res !== "NotInfo") {
@@ -203,11 +203,11 @@ function eliminarEmpleado() {
         $.ajax({
             type: 'post',
             url: "controller/ctlEmpleado.php",
-            beforeSend: function() {
+            beforeSend: function () {
 
             },
             data: objEmp,
-            success: function(res) {
+            success: function (res) {
                 var info = JSON.parse(res);
                 if (info.res == "Success") {
                     limpiarEmpleado();
