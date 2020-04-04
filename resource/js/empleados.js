@@ -4,7 +4,18 @@ $(document).ready(function() {
     $("#guardarEmp").click(guardarEmpleado);
     $("#eliminarEmp").click(eliminarEmpleado);
     $("#modificarEmp").click(guardarEmpleado);
+    //$("#modificarEmp").click(guardarEmpleado);
+    //$("#modificarEmp").click(guardarEmpleado);
+    $("#dialog_emp_csv").hide();
     listarEmpleados();
+    $(document).on('click', '#rpt_csv_emp', function () {
+        $("#dialog_emp_csv").dialog({
+            draggable: false,
+            resizable: false,
+            width: "40%",
+            title: "Generar Reporte CSV"
+        });
+    });
 });
 
 function guardarEmpleado() {

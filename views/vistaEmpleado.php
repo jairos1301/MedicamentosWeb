@@ -42,11 +42,26 @@ include("views/banner.php");
                 <button type="button" class="btn btn-primary" id="guardarEmp">Guardar</button>
                 <button type="button" class="btn btn-danger" id="eliminarEmp">Eliminar</button>
                 <button type="button" class="btn btn-success" id="modificarEmp">Modificar</button>
+                <button type="button" class="btn btn-info" id="rpt_csv_emp">Generar CSV</button>
             </form>
             <form name="formPDF" method="post" action="./reporte/gestionPDF.php" target="_blank">
                 <input type="hidden" name="nombre" value="empleado">
                 <input type="hidden" name="nombre_rpt" value="EMPLEADOS">
                 <input type="submit" class="btn btn-info" value="Generar PDF">
+            </form>
+        </div>
+        <div id="dialog_emp_csv">
+            <form name="formCSV_emp1" method="post" action="./reporte/gestionCSV.php" target="_blank">
+                <input type="hidden" name="separator" value=",">
+                <input type="hidden" name="nombre" value="empleado">
+                <input type="hidden" name="nombre_rpt" value="EMPLEADOS"> 
+                <input type="submit" class="btn btn-primary" value="Separar por ','">
+            </form>
+            <form name="formCSV_emp2" method="post" action="./reporte/gestionCSV.php" target="_blank">
+                <input type="hidden" name="separator" value=";">
+                <input type="hidden" name="nombre" value="empleado">
+                <input type="hidden" name="nombre_rpt" value="EMPLEADOS">   
+                <input type="submit" class="btn btn-primary" value="Separar por ';'">
             </form>
         </div>
         <div class="col-6 mt-5 ml-auto mr-auto">
