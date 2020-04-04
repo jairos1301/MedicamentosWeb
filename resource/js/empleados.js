@@ -4,7 +4,18 @@ $(document).ready(function() {
     $("#guardarEmp").click(guardarEmpleado);
     $("#eliminarEmp").click(eliminarEmpleado);
     $("#modificarEmp").click(guardarEmpleado);
+    //$("#modificarEmp").click(guardarEmpleado);
+    //$("#modificarEmp").click(guardarEmpleado);
+    $("#dialog_emp_csv").hide();
     listarEmpleados();
+    $(document).on('click', '#rpt_csv_emp', function () {
+        $("#dialog_emp_csv").dialog({
+            draggable: false,
+            resizable: false,
+            width: "40%",
+            title: "Generar Reporte CSV"
+        });
+    });
 });
 
 function guardarEmpleado() {
@@ -40,10 +51,22 @@ function guardarEmpleado() {
                 var info = JSON.parse(data);
                 if (info.res === "Success") {
                     limpiarEmpleado();
-                    alert("Operacion exitosa");
+                    Swal.fire({
+                        title: 'Bien!',
+                        text: 'Operación exitosa',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                     listarEmpleados();
                 } else {
-                    alert("No se pudo almacenar");
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'No se pudo almacenar',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {
@@ -52,7 +75,13 @@ function guardarEmpleado() {
             }
         });
     } else {
-        alert("Ingrese todos los datos");
+        Swal.fire({
+            title: 'Cuidado!',
+            text: 'Ingrese los datos correctamente',
+            icon: 'warning',
+            showConfirmButton: false,
+            timer: 1500
+        });
     }
 }
 
@@ -158,7 +187,13 @@ function buscarEmpleado(codigo) {
 function eliminarEmpleado() {
     var dato = $("#idEmp").val();
     if (dato == "") {
-        alert("Debe cargar los datos a eliminar");
+        Swal.fire({
+            title: 'Cuidado!',
+            text: 'No hay objeto a eliminar.',
+            icon: 'warning',
+            showConfirmButton: false,
+            timer: 1500
+        });
     } else {
         const objEmp = {
             idEmpleado: dato,
@@ -177,9 +212,21 @@ function eliminarEmpleado() {
                 if (info.res == "Success") {
                     limpiarEmpleado();
                     listarEmpleados();
-                    alert("Eliminado con exito");
+                    Swal.fire({
+                        title: 'Bien!',
+                        text: 'Operación exitosa',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 } else {
-                    alert("No se pudo eliminar tiene registros asociados");
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'No se pudo eliminar',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {

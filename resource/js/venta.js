@@ -50,9 +50,21 @@ $(document).ready(function () {
                     var info = JSON.parse(respuesta);
                     if (info.res === "Success") {
                         listaClientes();
-                        alert("Operacion exitosa");
+                        Swal.fire({
+                            title: 'Bien!',
+                            text: 'Operación exitosa',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     } else {
-                        alert("No se pudo almacenar");
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Operación fallida',
+                            icon: 'error',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     }
                     location.reload();
                 },
@@ -62,7 +74,13 @@ $(document).ready(function () {
                 }
             });
         } else {
-            alert('Debe seleccionar un cliente');
+            Swal.fire({
+                title: 'Cuidado!',
+                text: 'Debe seleccionar un cliente',
+                icon: 'warning',
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
     })
 
@@ -78,10 +96,22 @@ $(document).ready(function () {
                 var info = JSON.parse(respuesta);
                 if (info.res === "Success") {
                     listaClientes();
-                    alert("Operacion exitosa");
+                    Swal.fire({
+                        title: 'Bien!',
+                        text: 'Operación exitosa',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                     $("#dialog_cliente").dialog('close');
                 } else {
-                    alert("No se pudo almacenar");
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Operación fallida',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
 
             },
@@ -170,7 +200,13 @@ function listarMedicamentos() {
 function agrega_venta(id, cantidad, precio) {
     var existe = $("tr[value='" + id + "'][class='tr_venta']");
     if (existe.length > 0) {
-        alert('El medicamento elegido ya esta en la venta');
+        Swal.fire({
+            title: 'Cuidado!',
+            text: 'El medicamento ya esta en la venta',
+            icon: 'warning',
+            showConfirmButton: false,
+            timer: 1500
+        });
     } else {
         $("#body_venta").append("<tr value='" + id + "' class='tr_venta' data-precio='" + precio + "'> <td>" + $("tr[value=" + id + "]").data('nombre') + "</td> <td> <input type='number' onkeydown='return false' data-precio='" + precio + "'class='cantidad_venta' value='1' min='1' max='" + cantidad + "'> </td> <td data-unitario='" + precio + "' class='valor_medicamento'>" + precio + "</td> <td> <button class='btn_elimina btn btn-danger btn-sm' value='" + id + "'type='button'> X </button> </td> </tr>")
         arrInv.push(id);

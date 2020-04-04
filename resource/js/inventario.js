@@ -4,6 +4,7 @@ $(document).ready(function () {
     $("#guardarInv").click(guardarInventario);
     $("#eliminarInv").click(eliminarInventario);
     $("#modificarInv").click(guardarInventario);
+    $("#dialog_inv").hide();
     $("#divInv").hide();
     $("#dialog_devo").hide();
     listarInventario();
@@ -16,7 +17,16 @@ $(document).ready(function () {
             width: "80%",
             title: "Devolución"
         });
-    })
+    });
+
+    $(document).on('click', '#rpt_csv_inv', function () {
+        $("#dialog_inv").dialog({
+            draggable: false,
+            resizable: false,
+            width: "40%",
+            title: "Generar Reporte CSV"
+        });
+    });
 });
 
 function listarDevo() {
@@ -99,10 +109,22 @@ function devolver(id, cant) {
 
                 var info = JSON.parse(data);
                 if (info.res === "Success") {
-                    alert("Operacion exitosa");
+                    Swal.fire({
+                        title: 'Bien!',
+                        text: 'Operación exitosa',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                     location.reload();
                 } else {
-                    alert("No se pudo almacenar");
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Operación fallida',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {
@@ -111,7 +133,13 @@ function devolver(id, cant) {
             }
         });
     } else {
-        alert('Ingrese un valor mayor a cero');
+        Swal.fire({
+            title: 'Cuidado!',
+            text: 'Ingrese un valor mayor a 0',
+            icon: 'warning',
+            showConfirmButton: false,
+            timer: 1500
+        });
     }
 }
 
@@ -155,9 +183,21 @@ function guardarInventario() {
                 if (info.res === "Success") {
                     limpiarInventario();
                     listarInventario();
-                    alert("Operacion exitosa");
+                    Swal.fire({
+                        title: 'Bien!',
+                        text: 'Operación exitosa',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 } else {
-                    alert("No se pudo almacenar");
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'No se pudo almacenar',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {
@@ -166,7 +206,13 @@ function guardarInventario() {
             }
         });
     } else {
-        alert("Ingrese todos los datos");
+        Swal.fire({
+            title: 'Cuidado!',
+            text: 'Ingrese los datos correctamente',
+            icon: 'warning',
+            showConfirmButton: false,
+            timer: 1500
+        });
     }
 }
 
@@ -274,18 +320,22 @@ function buscarInventario(codigo) {
 function eliminarInventario() {
     var dato = $("#idInventario").val();
     if (dato == "") {
-        alert("Debe cargar los datos a eliminar");
+        Swal.fire({
+            title: 'Cuidado!',
+            text: 'No hay objeto a eliminar.',
+            icon: 'warning',
+            showConfirmButton: false,
+            timer: 1500
+        });
     } else {
         const objInv = {
             idInventario: dato,
             type: 'delete'
         };
-
         $.ajax({
             type: 'post',
             url: "controller/ctlInventario.php",
             beforeSend: function () {
-
             },
             data: objInv,
             success: function (res) {
@@ -295,10 +345,22 @@ function eliminarInventario() {
 
                 if (info.res == "Success") {
                     limpiarInventario();
-                    alert("Eliminado con exito");
+                    Swal.fire({
+                        title: 'Bien!',
+                        text: 'Operación exitosa',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                     listarInventario();
                 } else {
-                    alert("No se pudo eliminar");
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Operación fallida',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                     limpiarInventario();
                 }
             },
