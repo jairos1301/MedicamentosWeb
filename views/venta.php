@@ -104,6 +104,7 @@ include("banner.php");
             </div>
             <div class="col-6">
                 <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="button" class="btn btn-primary" id="rpt_csv_cliente">Generar CSV</button>
             </div>
         </div>
     </form>
@@ -122,11 +123,18 @@ include("banner.php");
 
         </tbody>
     </table>
-    <form name="formPDF" method="post" action="./reporte/gestionPDF.php" target="_blank">
-        <input type="hidden" name="nombre" value="venta">
-        <input type="hidden" name="nombre_rpt" value="VENTAS">
-        <input type="submit" value="Generar PDF">
-    </form>
+    <div class="row">
+        <div class="col-2">
+            <form name="formPDF" method="post" action="./reporte/gestionPDF.php" target="_blank">
+                <input type="hidden" name="nombre" value="venta">
+                <input type="hidden" name="nombre_rpt" value="VENTAS">
+                <input type="submit" class="btn btn-info" value="Generar PDF">
+            </form>
+        </div>
+        <div class="col-3">
+            <button type="button" class="btn btn-info" id="rpt_csv_venta">Generar CSV</button>
+        </div>
+    </div>
 </div>
 <div id="div_rpt_detalle">
     <form name="formPDF" id="formDetalle" method="post" action="./reporte/gestionPDF.php" target="_blank">
@@ -136,4 +144,40 @@ include("banner.php");
         <input type="hidden" name="nombre_rpt" value="DETALLE DE VENTAS">
         <input type="submit" value="Generar PDF">
     </form>
+</div>
+<div id="dialog_venta_csv" class="row">
+    <div class="col-3">
+        <form name="formCSV_emp1" method="post" action="./reporte/gestionCSV.php" target="_blank">
+            <input type="hidden" name="separator" value=",">
+            <input type="hidden" name="nombre" value="venta">
+            <input type="hidden" name="nombre_rpt" value="VENTAS">
+            <input type="submit" class="btn btn-primary" onclick="cerrar('dialog_venta_csv');" value="Separar por ,">
+        </form>
+    </div>
+    <div class="col-4">
+        <form name="formCSV_emp2" method="post" action="./reporte/gestionCSV.php" target="_blank">
+            <input type="hidden" name="separator" value=";">
+            <input type="hidden" name="nombre" value="venta">
+            <input type="hidden" name="nombre_rpt" value="VENTAS">
+            <input type="submit" class="btn btn-primary" onclick="cerrar('dialog_venta_csv');" value="Separar por ;">
+        </form>
+    </div>
+</div>
+<div id="dialog_cliente_csv" class="row">
+    <div class="col-3">
+        <form name="formCSV_emp1" method="post" action="./reporte/gestionCSV.php" target="_blank">
+            <input type="hidden" name="separator" value=",">
+            <input type="hidden" name="nombre" value="cliente">
+            <input type="hidden" name="nombre_rpt" value="CLIENTES">
+            <input type="submit" class="btn btn-primary" onclick="cerrar('dialog_cliente_csv');" value="Separar por ,">
+        </form>
+    </div>
+    <div class="col-4">
+        <form name="formCSV_emp2" method="post" action="./reporte/gestionCSV.php" target="_blank">
+            <input type="hidden" name="separator" value=";">
+            <input type="hidden" name="nombre" value="cliente">
+            <input type="hidden" name="nombre_rpt" value="CLIENTES">
+            <input type="submit" class="btn btn-primary" onclick="cerrar('dialog_cliente_csv');" value="Separar por ;">
+        </form>
+    </div>
 </div>

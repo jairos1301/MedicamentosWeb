@@ -13,6 +13,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="index.php?page=venta">Venta</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?page=reporte">Reporte</a>
+            </li>
         </ul>
     </div>
     <form class="form-inline mx-auto" name="formularioLogout" method="POST" action="controller/ctlLogin.php">

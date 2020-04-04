@@ -10,7 +10,7 @@
     <link href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="resource/jquery/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script src="sweetalert2.all.min.js"></script>
+    <!-- <script src="sweetalert2.all.min.js"></script> -->
     <script type="text/javascript" src="resource/js/empleados.js"></script>
     <script type="text/javascript" src="resource/js/inventario.js"></script>
     <script type="text/javascript" src="resource/js/cbList.js"></script>
