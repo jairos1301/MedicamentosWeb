@@ -10,6 +10,28 @@ $(document).ready(function () {
     $("#dialog_venta").hide();
     $("#div_carrito").hide();
     $("#div_rpt_detalle").hide();
+    $("#dialog_venta_csv").hide();
+    $("#dialog_cliente_csv").hide();
+
+    $(document).on('click', '#rpt_csv_venta', function () {
+        $("#dialog_venta_csv").dialog({
+            draggable: false,
+            resizable: false,
+            width: "40%",
+            title: "Generar Reporte CSV"
+        });
+    });
+
+    $(document).on('click', '#rpt_csv_cliente', function () {
+        $("#dialog_cliente_csv").dialog({
+            draggable: false,
+            resizable: false,
+            width: "40%",
+            title: "Generar Reporte CSV"
+        });
+    });
+
+
 
     $(document).on('click', '.btn_elimina', function () {
         $("tr[value=" + this.value + "][class='tr_venta']").remove();
@@ -253,9 +275,14 @@ function listaClientes() {
     });
 }
 
-function detalle_venta(id){
+// Metodo para el submit
+function detalle_venta(id) {
     $("#vwhere").val(id);
     $("#formDetalle").submit();
+}
+
+function cerrar(div) {
+    $("#" + div).dialog('close');
 }
 
 function listarVentas() {
@@ -271,7 +298,7 @@ function listarVentas() {
             var lista = "";
             if (info.length > 0) {
                 for (let k = 0; k < info.length; k++) {
-                    lista = lista + '<tr class="tr_realizadas" onClick=detalle_venta('+ info[k].id+')>';
+                    lista = lista + '<tr class="tr_realizadas" onClick=detalle_venta(' + info[k].id + ')>';
                     lista = lista + '<td>' + info[k].fecha + '</td>';
                     lista = lista + '<td>' + info[k].valor + '</td>';
                     lista = lista + '<td>' + info[k].cliente + '</td>';

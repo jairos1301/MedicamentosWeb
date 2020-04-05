@@ -54,14 +54,14 @@ include("views/banner.php");
             <form name="formCSV_emp1" method="post" action="./reporte/gestionCSV.php" target="_blank">
                 <input type="hidden" name="separator" value=",">
                 <input type="hidden" name="nombre" value="empleado">
-                <input type="hidden" name="nombre_rpt" value="EMPLEADOS"> 
-                <input type="submit" class="btn btn-primary" value="Separar por ','">
+                <input type="hidden" name="nombre_rpt" value="EMPLEADOS">
+                <input type="submit" class="btn btn-primary" onclick="cerrar('dialog_emp_csv');" value="Separar por ','">
             </form>
             <form name="formCSV_emp2" method="post" action="./reporte/gestionCSV.php" target="_blank">
                 <input type="hidden" name="separator" value=";">
                 <input type="hidden" name="nombre" value="empleado">
-                <input type="hidden" name="nombre_rpt" value="EMPLEADOS">   
-                <input type="submit" class="btn btn-primary" value="Separar por ';'">
+                <input type="hidden" name="nombre_rpt" value="EMPLEADOS">
+                <input type="submit" class="btn btn-primary" onclick="cerrar('dialog_emp_csv');" value="Separar por ';'">
             </form>
         </div>
         <div class="col-6 mt-5 ml-auto mr-auto">

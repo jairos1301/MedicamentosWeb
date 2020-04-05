@@ -17,4 +17,4 @@ function validarLogin(fl,tipo) {
     } else {
         fl.submit();
     }
-}
+}   
