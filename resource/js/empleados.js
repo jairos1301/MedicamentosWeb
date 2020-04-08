@@ -18,6 +18,10 @@ $(document).ready(function () {
     });
 });
 
+function cerrar(div) {
+    $("#" + div).dialog('close');
+}
+
 function guardarEmpleado() {
     let objEmp = {
         idEmpleado: $("#idEmp").val(),
