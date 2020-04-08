@@ -39,25 +39,31 @@ include("views/banner.php");
                         <input type="password" class="form-control" id="passwordEmp" placeholder="Password">
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary" id="guardarEmp">Guardar</button>
-                <button type="button" class="btn btn-danger" id="eliminarEmp">Eliminar</button>
-                <button type="button" class="btn btn-success" id="modificarEmp">Modificar</button>
-                <button type="button" class="btn btn-info" id="rpt_csv_emp">Generar CSV</button>
             </form>
-            <form name="formPDF" method="post" action="./reporte/gestionPDF.php" target="_blank">
-                <input type="hidden" name="nombre" value="empleado">
-                <input type="hidden" name="nombre_rpt" value="EMPLEADOS">
-                <input type="submit" class="btn btn-info" value="Generar PDF">
-            </form>
+            <div class="row">
+                <div>
+                    <button type="button" class="btn btn-primary" id="guardarEmp">Guardar</button>
+                    <button type="button" class="btn btn-danger" id="eliminarEmp">Eliminar</button>
+                    <button type="button" class="btn btn-success" id="modificarEmp">Modificar</button>
+                    <button type="button" class="btn btn-info" id="rpt_csv_emp">Generar CSV</button>
+                </div>
+                <div style="margin-left: 4px;">
+                    <form name="formPDF" method="post" action="./reporte/gestionPDF.php" target="_blank">
+                        <input type="hidden" name="nombre" value="empleado">
+                        <input type="hidden" name="nombre_rpt" value="EMPLEADOS">
+                        <input type="submit" class="btn btn-info" value="Generar PDF">
+                    </form>
+                </div>
+            </div>
         </div>
-        <div id="dialog_emp_csv">
+        <div id="dialog_emp_csv" class="row" style="margin-left: 100px; margin-top: 20px">
             <form name="formCSV_emp1" method="post" action="./reporte/gestionCSV.php" target="_blank">
                 <input type="hidden" name="separator" value=",">
                 <input type="hidden" name="nombre" value="empleado">
                 <input type="hidden" name="nombre_rpt" value="EMPLEADOS">
                 <input type="submit" class="btn btn-primary" onclick="cerrar('dialog_emp_csv');" value="Separar por ','">
             </form>
-            <form name="formCSV_emp2" method="post" action="./reporte/gestionCSV.php" target="_blank">
+            <form style="margin-left: 16px" name="formCSV_emp2" method="post" action="./reporte/gestionCSV.php" target="_blank">
                 <input type="hidden" name="separator" value=";">
                 <input type="hidden" name="nombre" value="empleado">
                 <input type="hidden" name="nombre_rpt" value="EMPLEADOS">
