@@ -29,6 +29,10 @@ $(document).ready(function () {
     });
 });
 
+function cerrar(div) {
+    $("#" + div).dialog('close');
+}
+
 function listarDevo() {
     $.ajax({
         type: 'post',
