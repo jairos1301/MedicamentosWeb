@@ -21,4 +21,10 @@ class reportesDAO
         return $data;
     }
 
+    public function generar_grafica($cod_grafica){
+        $sql = $this->infra->estructura_sql("reporte_grafica",array($cod_grafica), 1);
+        $data = $this->objCon->Execute($sql);
+        return $data;
+    }
+
 }
