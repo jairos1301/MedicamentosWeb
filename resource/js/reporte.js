@@ -22,21 +22,23 @@ $(document).ready(function () {
                 success: function (respuesta) {
                     var res = JSON.parse(respuesta);
                     var response = JSON.parse(res.data);
-
+                    debugger;
                     switch (cod_grafica) {
                         case 1:
                             rpt_genero(response);
-
                             break;
-
+                        case 2:
+                            rpt_medicamentos(response);
+                            break;
+                        case 3:
+                            // rpt_medicamentos(response);
+                            // break;
+                        case 4:
+                            rpt_det_empleado(response);
+                            break;
                         default:
                             break;
                     }
-
-
-
-
-
                 },
                 error: (jqXHR, textStatus, errorThrown) => {
                     alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
@@ -76,7 +78,47 @@ function rpt_genero(response) {
             title: "Distribucion de género"
         }
     });
+}
+
+function rpt_medicamentos(response) {
+    let cols = [];
+    $("#title_chart").html('REPORTE SEGUN LA DISTRIBUCION DE MEDICAMENTO');
+
+    for (let i = 0; i < response.length; i++) {
+        if(response[i].cantidad > 0)
+        cols.push([response[i].medicamento + ": " + response[i].cantidad, response[i].cantidad]);
+    }
+
+    chart = c3.generate({
+        bindto: '#div_chart',
+        data: {
+            columns: cols,
+            type: 'donut',
+        },
+        donut: {
+        }
+    });
+}
 
 
+function rpt_det_empleado(response) {
+    let cols = [];
+    $("#title_chart").html('REPORTE VENTAS E INGRESOS POR EMPLEADO');
 
+    for (let i = 0; i < response.length; i++) {
+        cols.push([response[i].empleado + ": "+ response[i].generado, response[i].ventas]);
+    }
+
+    chart = c3.generate({
+        bindto: '#div_chart',
+        data: {
+            columns: cols,
+            type: 'bar'
+        },
+        bar: {
+            width: {
+                ratio: 0.5
+            }        
+        }
+    });
 }

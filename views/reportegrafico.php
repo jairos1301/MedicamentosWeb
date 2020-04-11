@@ -12,7 +12,9 @@ include("banner.php");
                     <option value="1">Distribución segun el género</option>
                     <option value="2">Distribución de cantidad de medicamentos </option>
                     <option value="3">Productos </option>
-                    <option value="4">Informe </option>
+                    <option value="4">Empleados con más ventas </option>
+                    <option value="5">Falta 1</option>
+                    <option value="6">Falta 2</option>
                 </select>
             </div>
             <div class="col-2">
