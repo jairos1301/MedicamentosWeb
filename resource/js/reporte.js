@@ -1,11 +1,11 @@
 'use strict'
-
-let cols = "";
+let chart;
 
 $(document).ready(function () {
 
     //$("div_grafica").hide();
-    let chart;
+
+
 
 
     $(document).on('click', '#btn_rpt', function (e) {
@@ -22,39 +22,20 @@ $(document).ready(function () {
                 success: function (respuesta) {
                     var res = JSON.parse(respuesta);
                     var response = JSON.parse(res.data);
-                    var x = res.data
 
+                    switch (cod_grafica) {
+                        case 1:
+                            rpt_genero(response);
 
-                    var row_value = {
-                        "2015-5-1": 22792461.479999978,
-                        "2015-6-1": 24807797.38999998,
-                        "2015-7-1": 25261456.609999962
-                    };
+                            break;
 
-                    // This first value of array if the name of your data
-                    var sum_list = [];
-                    for (let i = 0; i < response.length; i++) {
-                        sum_list[i] = response[i].genero + response[i].cantidad;
+                        default:
+                            break;
                     }
-                    
-                    debugger;
-
-                    chart = c3.generate({
-                        bindto: '#div_chart',
-                        data: {
-                            columns: [
-                                sum_list
-                            ],
-                            type: 'bar',
-                        },
-                        donut: {
-                            title: "Iris Petal Width"
-                        }
-                    });
 
 
 
-                    
+
 
                 },
                 error: (jqXHR, textStatus, errorThrown) => {
@@ -73,4 +54,29 @@ $(document).ready(function () {
         }
 
     });
+
 });
+
+function rpt_genero(response) {
+    let cols = [];
+    $("#title_chart").html('REPORTE SEGUN LA DISTRIBUCION DE GÉNERO');
+
+    for (let i = 0; i < response.length; i++) {
+        cols.push([response[i].genero + ": " + response[i].cantidad, response[i].cantidad]);
+
+    }
+
+    chart = c3.generate({
+        bindto: '#div_chart',
+        data: {
+            columns: cols,
+            type: 'donut',
+        },
+        donut: {
+            title: "Distribucion de género"
+        }
+    });
+
+
+
+}
