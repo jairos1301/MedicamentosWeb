@@ -2,7 +2,6 @@
 include("banner.php");
 ?>
 <br>
-<br>
 <form id="form_rpt">
     <div class="container">
         <div class="row">
@@ -11,10 +10,10 @@ include("banner.php");
                     <option value="">Seleccione el reporte...</option>
                     <option value="1">Distribución segun el género</option>
                     <option value="2">Distribución de cantidad de medicamentos </option>
-                    <option value="3">Productos </option>
+                    <option value="3">Cantidad vendida por producto </option>
                     <option value="4">Empleados con más ventas </option>
-                    <option value="5">Falta 1</option>
-                    <option value="6">Falta 2</option>
+                    <option value="5">Ventas e ingresos por dia del mes</option>
+                    <option value="6">Ventas por dia de la semana</option>
                 </select>
             </div>
             <div class="col-2">
@@ -25,7 +24,7 @@ include("banner.php");
 </form>
 <br>
 <br>
-<div id="div_grafica">
+<div id="div_grafica" class="container">
     <div class="row text-center">
         <div class="col-12">
             <h2 id="title_chart">TITULO DE TALES</h2>
