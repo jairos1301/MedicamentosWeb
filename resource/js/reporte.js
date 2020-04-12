@@ -22,7 +22,7 @@ $(document).ready(function () {
                 success: function (respuesta) {
                     var res = JSON.parse(respuesta);
                     var response = JSON.parse(res.data);
-                    debugger;
+
                     switch (cod_grafica) {
                         case 1:
                             rpt_genero(response);
@@ -31,12 +31,16 @@ $(document).ready(function () {
                             rpt_medicamentos(response);
                             break;
                         case 3:
-                            // rpt_medicamentos(response);
-                            // break;
+                            rpt_productos(response);
+                            break;
                         case 4:
                             rpt_det_empleado(response);
                             break;
-                        default:
+                        case 5:
+                            rpt_ventasdia(response);
+                            break;
+                        case 6:
+                            rpt_ventasdiasemana(response);
                             break;
                     }
                 },
@@ -85,8 +89,8 @@ function rpt_medicamentos(response) {
     $("#title_chart").html('REPORTE SEGUN LA DISTRIBUCION DE MEDICAMENTO');
 
     for (let i = 0; i < response.length; i++) {
-        if(response[i].cantidad > 0)
-        cols.push([response[i].medicamento + ": " + response[i].cantidad, response[i].cantidad]);
+        if (response[i].cantidad > 0)
+            cols.push([response[i].medicamento + ": " + response[i].cantidad, response[i].cantidad]);
     }
 
     chart = c3.generate({
@@ -100,13 +104,13 @@ function rpt_medicamentos(response) {
     });
 }
 
-
-function rpt_det_empleado(response) {
+function rpt_productos(response) {
     let cols = [];
-    $("#title_chart").html('REPORTE VENTAS E INGRESOS POR EMPLEADO');
+    $("#title_chart").html('CANTIDADES VENDIDAS DE CADA PRODUCTO');
+
 
     for (let i = 0; i < response.length; i++) {
-        cols.push([response[i].empleado + ": "+ response[i].generado, response[i].ventas]);
+        cols.push([response[i].nombre + ": " + response[i].ingresos, response[i].cantidad]);
     }
 
     chart = c3.generate({
@@ -117,8 +121,78 @@ function rpt_det_empleado(response) {
         },
         bar: {
             width: {
-                ratio: 0.5
-            }        
+                ratio: 0.3
+            }
+        }
+    });
+}
+
+function rpt_ventasdia(response) {
+    let cols = [];
+    $("#title_chart").html('VENTAS GENERADAS POR DÍA DEL MES');
+
+
+    for (let i = 0; i < response.length; i++) {
+        cols.push([response[i].fecha + ": " + response[i].ingresos, response[i].ventas]);
+    }
+
+    chart = c3.generate({
+        bindto: '#div_chart',
+        data: {
+            columns: cols,
+            type: 'bar'
+        },
+        bar: {
+            width: {
+                ratio: 0.3
+            }
+        }
+    });
+}
+
+
+function rpt_det_empleado(response) {
+    let cols = [];
+    $("#title_chart").html('REPORTE VENTAS E INGRESOS POR EMPLEADO');
+
+
+    for (let i = 0; i < response.length; i++) {
+        cols.push([response[i].empleado + ": " + response[i].generado, response[i].ventas]);
+    }
+
+    chart = c3.generate({
+        bindto: '#div_chart',
+        data: {
+            columns: cols,
+            type: 'bar'
+        },
+        bar: {
+            width: {
+                ratio: 0.3
+            }
+        }
+    });
+}
+
+function rpt_ventasdiasemana(response) {
+    let cols = [];
+    $("#title_chart").html('VENTAS POR DIA DE LA SEMANA');
+
+
+    for (let i = 0; i < response.length; i++) {
+        cols.push([response[i].dia + ": " + response[i].ingresos, response[i].ventas]);
+    }
+
+    chart = c3.generate({
+        bindto: '#div_chart',
+        data: {
+            columns: cols,
+            type: 'bar'
+        },
+        bar: {
+            width: {
+                ratio: 0.3
+            }
         }
     });
 }
