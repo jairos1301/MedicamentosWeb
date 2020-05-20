@@ -19,7 +19,7 @@ class empleadoDAO {
     }
 
     public function buscar(clsEmpleado $obj){
-        $arr = array($obj->getIdEmpleado());
+        $arr = array($obj->getCedula());
         $sql = $this->infra->estructura_sql("buscar_emp", $arr, 1);
         $this->objCon->Execute($sql);
     }
@@ -28,7 +28,6 @@ class empleadoDAO {
     {
         $arr = array($obj->getIdEmpleado());
         $sql = $this->infra->estructura_sql("eliminar_emp", $arr);
-        // echo($sql);
         $this->objCon->ExecuteTransaction($sql);
     }
 

@@ -1,17 +1,18 @@
 <?php
+require '../infrastructure/CORS.php';
 include "../model/clsInventario.php";
 include '../DAO/inventarioDAO.php';
 
-    $idInventario = isset($_POST['idInventario']) ? $_POST['idInventario'] : '';
-    $nombreInv = isset($_POST['nombreInv']) ? $_POST['nombreInv'] : ''; 
-    $descripcionInv = isset($_POST['descripcionInv']) ? $_POST['descripcionInv'] : '';
-    $fechaVencimiento = isset($_POST['fechaVencimiento']) ? $_POST['fechaVencimiento'] : '';
-    $cantidad = isset($_POST['cantidad']) ? $_POST['cantidad'] : '';
-    $fechaFabricacion = isset($_POST['fechaFabricacion']) ? $_POST['fechaFabricacion'] : '';
-    $precio = isset($_POST['precio']) ? $_POST['precio'] : '';
-    $Empleado_idEmpleado = isset($_POST['Empleado_idEmpleado']) ? $_POST['Empleado_idEmpleado'] : '';
-    $Laboratorio_idLaboratorio = isset($_POST['Laboratorio_idLaboratorio']) ? $_POST['Laboratorio_idLaboratorio'] : '';
-    $type = isset($_POST['type']) ? $_POST['type'] : "";
+    $idInventario = isset($_REQUEST['idInventario']) ? $_REQUEST['idInventario'] : '';
+    $nombreInv = isset($_REQUEST['nombreInv']) ? $_REQUEST['nombreInv'] : ''; 
+    $descripcionInv = isset($_REQUEST['descripcionInv']) ? $_REQUEST['descripcionInv'] : '';
+    $fechaVencimiento = isset($_REQUEST['fechaVen']) ? $_REQUEST['fechaVen'] : '';
+    $cantidad = isset($_REQUEST['cantidad']) ? $_REQUEST['cantidad'] : '';
+    $fechaFabricacion = isset($_REQUEST['fechaFab']) ? $_REQUEST['fechaFab'] : '';
+    $precio = isset($_REQUEST['precio']) ? $_REQUEST['precio'] : '';
+    $Empleado_idEmpleado = isset($_REQUEST['Empleado_idEmpleado']) ? $_REQUEST['Empleado_idEmpleado'] : '';
+    $Laboratorio_idLaboratorio = isset($_REQUEST['Laboratorio_idLaboratorio']) ? $_REQUEST['Laboratorio_idLaboratorio'] : '';
+    $type = isset($_REQUEST['type']) ? $_REQUEST['type'] : "";
 
     $inventario = new clsInventario($idInventario, $nombreInv, $descripcionInv, $fechaVencimiento, $cantidad, $fechaFabricacion, $precio, $Empleado_idEmpleado, $Laboratorio_idLaboratorio);
     $conex = new inventarioDAO();

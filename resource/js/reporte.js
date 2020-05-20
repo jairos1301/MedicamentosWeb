@@ -110,7 +110,7 @@ function rpt_productos(response) {
 
 
     for (let i = 0; i < response.length; i++) {
-        cols.push([response[i].nombre + ": " + response[i].ingresos, response[i].cantidad]);
+        cols.push([response[i].nombre + ": $" + response[i].ingresos, response[i].cantidad]);
     }
 
     chart = c3.generate({
@@ -131,9 +131,8 @@ function rpt_ventasdia(response) {
     let cols = [];
     $("#title_chart").html('VENTAS GENERADAS POR DÍA DEL MES');
 
-
     for (let i = 0; i < response.length; i++) {
-        cols.push([response[i].fecha + ": " + response[i].ingresos, response[i].ventas]);
+        cols.push([response[i].fecha + ": $" + response[i].ingresos, response[i].ventas]);
     }
 
     chart = c3.generate({
@@ -157,7 +156,7 @@ function rpt_det_empleado(response) {
 
 
     for (let i = 0; i < response.length; i++) {
-        cols.push([response[i].empleado + ": " + response[i].generado, response[i].ventas]);
+        cols.push([response[i].empleado + ": $" + response[i].generado, response[i].ventas]);
     }
 
     chart = c3.generate({
@@ -180,7 +179,7 @@ function rpt_ventasdiasemana(response) {
 
 
     for (let i = 0; i < response.length; i++) {
-        cols.push([response[i].dia + ": " + response[i].ingresos, response[i].ventas]);
+        cols.push([response[i].dia + ": $" + response[i].ingresos, response[i].ventas]);
     }
 
     chart = c3.generate({

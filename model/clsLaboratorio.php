@@ -2,14 +2,14 @@
 
 class clsLaboratorio{
     private $idLaboratorio;
-    private $nombre;
-    private $descripcion;
+    private $nombreLab;
+    private $descripcionLab;
    
-    public function __construct($idLaboratorio, $nombre, $descripcion)
+    public function __construct($idLaboratorio, $nombreLab, $descripcionLab)
     {
         $this->idLaboratorio = $idLaboratorio;
-        $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
+        $this->nombreLab = $nombreLab;
+        $this->descripcionLab = $descripcionLab;
     }
 
     public function getIdLaboratorio()
@@ -22,23 +22,23 @@ class clsLaboratorio{
         $this->idLaboratorio = $idLaboratorio;
     }
 
-    public function getNombre()
+    public function getNombreLab()
     {
-        return $this->nombre;
+        return $this->nombreLab;
     }
     
-    public function setNombre($Nombre)
+    public function setNombre($nombreLab)
     {
-        $this->nombre = $nombre;
+        $this->nombreLab = $nombreLab;
     }     
 
-    public function getDescripcion()
+    public function getDescripcionLab()
     {
-        return $this->descripcion;
+        return $this->descripcionLab;
     }
     
-    public function setDescripcion($Descripcion)
+    public function setDescripcionLab($descripcionLab)
     {
-        $this->descripcion = $descripcion;
+        $this->descripcionLab = $descripcionLab;
     }
 }
