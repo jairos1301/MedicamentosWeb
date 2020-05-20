@@ -23,7 +23,7 @@ class inventarioDAO
 
     public function buscar(clsInventario $obj)
     {
-        $arr = array($obj->getIdInventario());
+        $arr = array($obj->getNombreInv());
         $sql = $this->infra->estructura_sql("buscar_inv", $arr, 1);
         $this->objCon->Execute($sql);
     }

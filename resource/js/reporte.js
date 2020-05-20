@@ -129,9 +129,8 @@ function rpt_ventasdia(response) {
     let cols = [];
     $("#title_chart").html('VENTAS GENERADAS POR DÍA DEL MES');
 
-
     for (let i = 0; i < response.length; i++) {
-        cols.push([response[i].fecha + ": " + response[i].ingresos, response[i].ventas]);
+        cols.push([response[i].fecha + ": $" + response[i].ingresos, response[i].ventas]);
     }
 
     chart = c3.generate({

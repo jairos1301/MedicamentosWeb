@@ -1,4 +1,5 @@
 <?php
+require '../infrastructure/CORS.php';
 include "../model/clsInventario.php";
 include '../DAO/inventarioDAO.php';
 require '../infrastructure/CORS.php';
@@ -6,9 +7,9 @@ require '../infrastructure/CORS.php';
     $idInventario = isset($_REQUEST['idInventario']) ? $_REQUEST['idInventario'] : '';
     $nombreInv = isset($_REQUEST['nombreInv']) ? $_REQUEST['nombreInv'] : ''; 
     $descripcionInv = isset($_REQUEST['descripcionInv']) ? $_REQUEST['descripcionInv'] : '';
-    $fechaVencimiento = isset($_REQUEST['fechaVencimiento']) ? $_REQUEST['fechaVencimiento'] : '';
+    $fechaVencimiento = isset($_REQUEST['fechaVen']) ? $_REQUEST['fechaVen'] : '';
     $cantidad = isset($_REQUEST['cantidad']) ? $_REQUEST['cantidad'] : '';
-    $fechaFabricacion = isset($_REQUEST['fechaFabricacion']) ? $_REQUEST['fechaFabricacion'] : '';
+    $fechaFabricacion = isset($_REQUEST['fechaFab']) ? $_REQUEST['fechaFab'] : '';
     $precio = isset($_REQUEST['precio']) ? $_REQUEST['precio'] : '';
     $Empleado_idEmpleado = isset($_REQUEST['Empleado_idEmpleado']) ? $_REQUEST['Empleado_idEmpleado'] : '';
     $Laboratorio_idLaboratorio = isset($_REQUEST['Laboratorio_idLaboratorio']) ? $_REQUEST['Laboratorio_idLaboratorio'] : '';

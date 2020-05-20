@@ -1,16 +1,17 @@
 <?php
 
+require '../infrastructure/CORS.php';
 include "../model/clsEmpleado.php";
 include '../DAO/empleadoDAO.php';
 
-    $idEmpleado = isset($_POST['idEmpleado']) ? $_POST['idEmpleado'] : '';
-    $cedula = isset($_POST['cedula']) ? $_POST['cedula'] : '';
-    $nombres = isset($_POST['nombres']) ? $_POST['nombres'] : "";
-    $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : "";
-    $correo = isset($_POST['correo']) ? $_POST['correo'] : "";
-    $usuario = isset($_POST['usuario']) ? $_POST['usuario'] : "";
-    $password = isset($_POST['password']) ? $_POST['password'] : "";
-    $type = isset($_POST['type']) ? $_POST['type'] : "";
+    $idEmpleado = isset($_REQUEST['idEmpleado']) ? $_REQUEST['idEmpleado'] : '';
+    $cedula = isset($_REQUEST['cedula']) ? $_REQUEST['cedula'] : '';
+    $nombres = isset($_REQUEST['nombres']) ? $_REQUEST['nombres'] : "";
+    $apellidos = isset($_REQUEST['apellidos']) ? $_REQUEST['apellidos'] : "";
+    $correo = isset($_REQUEST['correo']) ? $_REQUEST['correo'] : "";
+    $usuario = isset($_REQUEST['usuario']) ? $_REQUEST['usuario'] : "";
+    $password = isset($_REQUEST['password']) ? $_REQUEST['password'] : "";
+    $type = isset($_REQUEST['type']) ? $_REQUEST['type'] : "";
 
     $empleado = new clsEmpleado($idEmpleado,$cedula, $nombres, $apellidos, $correo, $usuario, $password);
     $conex = new empleadoDAO();
