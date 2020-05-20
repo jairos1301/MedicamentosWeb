@@ -106,6 +106,10 @@ $(document).ready(function () {
         }
     })
 
+    $(document).on('click', '#btn_pdf_cliente', function () {
+        $("#form_pdf_cliente").submit();
+    })
+
     $(document).on('submit', '#form_cliente', function (e) {
         e.preventDefault();
         $.ajax({

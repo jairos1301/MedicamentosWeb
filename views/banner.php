@@ -14,7 +14,7 @@
                 <a class="nav-link" href="index.php?page=venta">Venta</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.php?page=reporte">Reporte</a>
+                <a class="nav-link" href="index.php?page=reporte">Reportes CSV</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="index.php?page=reportegrafico">Reportes graficos</a>

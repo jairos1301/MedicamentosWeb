@@ -3,12 +3,12 @@ session_start();
 include "../model/clsVenta.php";
 include '../DAO/ventaDAO.php';
 
-$total = isset($_POST['total']) ? $_POST['total'] : '';
-$cliente = isset($_POST['cliente']) ? $_POST['cliente'] : '';
+$total = isset($_REQUEST['total']) ? $_REQUEST['total'] : '';
+$cliente = isset($_REQUEST['cliente']) ? $_REQUEST['cliente'] : '';
 $empleado = $_SESSION["id"];
-$type = isset($_POST['type']) ? $_POST['type'] : '';
-$arrInv = isset($_POST['arrInv']) ? $_POST['arrInv'] : '';
-$arrCant = isset($_POST['arrCant']) ? $_POST['arrCant'] : '';
+$type = isset($_REQUEST['type']) ? $_REQUEST['type'] : '';
+$arrInv = isset($_REQUEST['arrInv']) ? $_REQUEST['arrInv'] : '';
+$arrCant = isset($_REQUEST['arrCant']) ? $_REQUEST['arrCant'] : '';
 
 
 

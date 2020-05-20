@@ -27,6 +27,12 @@ class clienteDAO
         $this->objCon->ExecuteTransaction($sql);
     }
 
+    public function generar_rpt()
+    {
+        $sql = $this->infra->estructura_sql("reporte", array('cliente', ''), 1);
+        $data = $this->objCon->Execute_rpt($sql);
+        return $data;
+    }
 
     public function generar_rpt_csv()
     {
