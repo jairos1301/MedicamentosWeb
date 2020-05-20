@@ -1,14 +1,15 @@
 'use strict'
+let chart;
 
-let cols = "";
-
-$(document).ready(function () {
+$(document).ready(function() {
 
     //$("div_grafica").hide();
-    let chart;
+    /* $("#title_chart").hide(); */
 
 
-    $(document).on('click', '#btn_rpt', function (e) {
+
+
+    $(document).on('click', '#btn_rpt', function(e) {
         e.preventDefault();
         let cod_grafica = parseInt($("#select_rpt").val());
         if (cod_grafica) {
@@ -16,46 +17,32 @@ $(document).ready(function () {
             $.ajax({
                 type: 'post',
                 url: "controller/ctlReporte.php",
-                beforeSend: function () {
-                },
+                beforeSend: function() {},
                 data: "cod_grafica=" + cod_grafica,
-                success: function (respuesta) {
+                success: function(respuesta) {
                     var res = JSON.parse(respuesta);
                     var response = JSON.parse(res.data);
-                    var x = res.data
 
-
-                    var row_value = {
-                        "2015-5-1": 22792461.479999978,
-                        "2015-6-1": 24807797.38999998,
-                        "2015-7-1": 25261456.609999962
-                    };
-
-                    // This first value of array if the name of your data
-                    var sum_list = [];
-                    for (let i = 0; i < response.length; i++) {
-                        sum_list[i] = response[i].genero + response[i].cantidad;
+                    switch (cod_grafica) {
+                        case 1:
+                            rpt_genero(response);
+                            break;
+                        case 2:
+                            rpt_medicamentos(response);
+                            break;
+                        case 3:
+                            rpt_productos(response);
+                            break;
+                        case 4:
+                            rpt_det_empleado(response);
+                            break;
+                        case 5:
+                            rpt_ventasdia(response);
+                            break;
+                        case 6:
+                            rpt_ventasdiasemana(response);
+                            break;
                     }
-                    
-                    debugger;
-
-                    chart = c3.generate({
-                        bindto: '#div_chart',
-                        data: {
-                            columns: [
-                                sum_list
-                            ],
-                            type: 'bar',
-                        },
-                        donut: {
-                            title: "Iris Petal Width"
-                        }
-                    });
-
-
-
-                    
-
                 },
                 error: (jqXHR, textStatus, errorThrown) => {
                     alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
@@ -73,4 +60,137 @@ $(document).ready(function () {
         }
 
     });
+
 });
+
+function rpt_genero(response) {
+    let cols = [];
+    $("#title_chart").html('REPORTE SEGUN LA DISTRIBUCION DE GÉNERO');
+
+    for (let i = 0; i < response.length; i++) {
+        cols.push([response[i].genero + ": " + response[i].cantidad, response[i].cantidad]);
+    }
+
+    chart = c3.generate({
+        bindto: '#div_chart',
+        data: {
+            columns: cols,
+            type: 'donut',
+        },
+        donut: {
+            title: "Distribucion de género"
+        }
+    });
+}
+
+function rpt_medicamentos(response) {
+    let cols = [];
+    $("#title_chart").html('REPORTE SEGUN LA DISTRIBUCION DE MEDICAMENTO');
+
+    for (let i = 0; i < response.length; i++) {
+        if (response[i].cantidad > 0)
+            cols.push([response[i].medicamento + ": " + response[i].cantidad, response[i].cantidad]);
+    }
+
+    chart = c3.generate({
+        bindto: '#div_chart',
+        data: {
+            columns: cols,
+            type: 'donut',
+        },
+        donut: {}
+    });
+}
+
+function rpt_productos(response) {
+    let cols = [];
+    $("#title_chart").html('CANTIDADES VENDIDAS DE CADA PRODUCTO');
+
+
+    for (let i = 0; i < response.length; i++) {
+        cols.push([response[i].nombre + ": $" + response[i].ingresos, response[i].cantidad]);
+    }
+
+    chart = c3.generate({
+        bindto: '#div_chart',
+        data: {
+            columns: cols,
+            type: 'bar'
+        },
+        bar: {
+            width: {
+                ratio: 0.3
+            }
+        }
+    });
+}
+
+function rpt_ventasdia(response) {
+    let cols = [];
+    $("#title_chart").html('VENTAS GENERADAS POR DÍA DEL MES');
+
+
+    for (let i = 0; i < response.length; i++) {
+        cols.push([response[i].fecha + ": " + response[i].ingresos, response[i].ventas]);
+    }
+
+    chart = c3.generate({
+        bindto: '#div_chart',
+        data: {
+            columns: cols,
+            type: 'bar'
+        },
+        bar: {
+            width: {
+                ratio: 0.3
+            }
+        }
+    });
+}
+
+
+function rpt_det_empleado(response) {
+    let cols = [];
+    $("#title_chart").html('REPORTE VENTAS E INGRESOS POR EMPLEADO');
+
+
+    for (let i = 0; i < response.length; i++) {
+        cols.push([response[i].empleado + ": $" + response[i].generado, response[i].ventas]);
+    }
+
+    chart = c3.generate({
+        bindto: '#div_chart',
+        data: {
+            columns: cols,
+            type: 'bar'
+        },
+        bar: {
+            width: {
+                ratio: 0.3
+            }
+        }
+    });
+}
+
+function rpt_ventasdiasemana(response) {
+    let cols = [];
+    $("#title_chart").html('VENTAS POR DIA DE LA SEMANA');
+
+
+    for (let i = 0; i < response.length; i++) {
+        cols.push([response[i].dia + ": $" + response[i].ingresos, response[i].ventas]);
+    }
+
+    chart = c3.generate({
+        bindto: '#div_chart',
+        data: {
+            columns: cols,
+            type: 'bar'
+        },
+        bar: {
+            width: {
+                ratio: 0.3
+            }
+        }
+    });
+}
