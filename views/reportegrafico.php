@@ -27,7 +27,7 @@ include("banner.php");
 <div id="div_grafica" class="container">
     <div class="row text-center">
         <div class="col-12">
-            <h2 id="title_chart">TITULO DE TALES</h2>
+            <h2 id="title_chart"></h2>
         </div>
     </div>
     <div id="div_chart"></div>

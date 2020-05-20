@@ -2,6 +2,7 @@
 require '../infrastructure/CORS.php';
 include "../model/clsInventario.php";
 include '../DAO/inventarioDAO.php';
+require '../infrastructure/CORS.php';
 
     $idInventario = isset($_REQUEST['idInventario']) ? $_REQUEST['idInventario'] : '';
     $nombreInv = isset($_REQUEST['nombreInv']) ? $_REQUEST['nombreInv'] : ''; 

@@ -3,15 +3,15 @@ $nombre_rpt = $_POST['nombre_rpt'];
 $rpt = isset($_POST['rpt']) ? $_POST['rpt'] : "";
 $vwhere = isset($_POST['vwhere']) ? $_POST['vwhere'] : "";
 $nombre = $_POST['nombre'];
-$name_dao = $nombre."DAO";
+$name_dao = $nombre . "DAO";
 
-require "../DAO/".$name_dao.".php";
+require "../DAO/" . $name_dao . ".php";
 
 $dao = new $name_dao();
-if($rpt == 'detalle'){
+if ($rpt == 'detalle') {
     $arr = $dao->generar_rptdet($vwhere);
-}else{
-$arr = $dao->generar_rpt();
+} else {
+    $arr = $dao->generar_rpt();
 }
 $keys = array_keys($arr[0]);
 
@@ -27,10 +27,11 @@ $content .= '<link href="../resource/css/estilosPDF.css" type="text/css" rel="st
 
 
 $content .= "<page_header>
-                <table style='width: 90%;'>
+                <table style='width: 80%;'>
                     <tr>
                         <td>
-                            <div><label class='logo'>MEDICAMENTOS</label></div>
+                            <div><img src='../resource/icono.png' alt='Farmacia ALJA' height='60' width='60'></div>
+
                         </td>                                        
                     </tr>
                 </table>
@@ -51,16 +52,15 @@ $content .= "<page_header>
 $content .= "<table border='1'>";
 
 $content .= "<tr>";
-for ($i=0; $i < count($keys); $i++) { 
-    $content .= "<th>".$keys[$i]."</th>";
-
+for ($i = 0; $i < count($keys); $i++) {
+    $content .= "<th>" . $keys[$i] . "</th>";
 }
 $content .= "</tr>";
 
 for ($cont = 0; $cont < count($arr); $cont++) {
     $content .= "<tr>";
-    
-    for ($i=0; $i < count($keys); $i++) { 
+
+    for ($i = 0; $i < count($keys); $i++) {
         # code...
         $content .= "<td>" . $arr[$cont][$keys[$i]] . "</td>";
     }

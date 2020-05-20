@@ -1,9 +1,11 @@
 <?php
-$cod_reporte = $_POST['cod_rpt'];
-$nombre_rpt = $_POST['nombre_rpt'];
-$caracterSeparado = $_POST['separator'];
+$cod_reporte = $_REQUEST['cod_rpt'];
+//$nombre_rpt = $_REQUEST['nombre_rpt'];
+$nombre_rpt = "Reporte csv";
+$caracterSeparado = ";";
 
 require "../DAO/reportesDAO.php";
+require '../infrastructure/CORS.php';
 
 $dao = new reportesDAO();
 $arr = $dao->generar_csv($cod_reporte);

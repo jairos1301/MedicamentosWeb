@@ -104,7 +104,8 @@ include("banner.php");
             </div>
             <div class="col-6">
                 <button type="submit" class="btn btn-primary">Guardar</button>
-                <button type="button" class="btn btn-primary" id="rpt_csv_cliente">Generar CSV</button>
+                <button type="button" class="btn btn-primary" id="rpt_csv_cliente">CSV</button>
+                <button type="button" id="btn_pdf_cliente" class="btn btn-primary" id="rpt_csv_cliente">PDF</button>
             </div>
         </div>
     </form>
@@ -180,4 +181,11 @@ include("banner.php");
             <input type="submit" class="btn btn-primary" onclick="cerrar('dialog_cliente_csv');" value="Separar por ;">
         </form>
     </div>
+</div>
+<div hidden>
+    <form id="form_pdf_cliente" name="formPDF" method="post" action="./reporte/gestionPDF.php" target="_blank">
+        <input type="hidden" name="nombre" value="cliente">
+        <input type="hidden" name="nombre_rpt" value="CLIENTES">
+        <input type="submit" class="btn btn-primary" value="PDF">
+    </form>
 </div>
