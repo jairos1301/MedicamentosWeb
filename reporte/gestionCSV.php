@@ -1,7 +1,9 @@
 <?php
+//nombre del dao 
 $nombre = $_POST['nombre'];
+//nombre del reporte
 $nombre_rpt = $_POST['nombre_rpt'];
-$caracterSeparado = $_POST['separator'];
+$caracterSeparado = ";";
 $rpt = isset($_POST['rpt']) ? $_POST['rpt'] : "";
 $name_dao = $nombre."DAO";
 
