@@ -8,8 +8,9 @@ class clsEmpleado{
     private $correo;
     private $usuario;
     private $password;
+    private $idTipoUsuario;
 
-    public function __construct($idEmpleado, $cedula, $nombres, $apellidos, $correo, $usuario, $password)
+    public function __construct($idEmpleado, $cedula, $nombres, $apellidos, $correo, $usuario, $password, $idTipoUsuario)
     {
         $this->idEmpleado = $idEmpleado;
         $this->cedula = $cedula;
@@ -18,6 +19,7 @@ class clsEmpleado{
         $this->correo = $correo  ;
         $this->usuario = $usuario;
         $this->password = $password;
+        $this->idTipoUsuario = $idTipoUsuario;
     }
 
     public function getIdEmpleado()
@@ -75,7 +77,7 @@ class clsEmpleado{
         return $this->usuario;
     }
     
-    public function setUsuario($Usuario)
+    public function setUsuario($usuario)
     {
         $this->usuario = $usuario;
     }
@@ -85,8 +87,18 @@ class clsEmpleado{
         return $this->password;
     }
     
-    public function setPassword($Password)
+    public function setPassword($password)
     {
         $this->password = $password;
+    }
+
+    public function getIdTipoUsuario()
+    {
+        return $this->idTipoUsuario;
+    }
+    
+    public function setIdTipoUsuario($idTipoUsuario)
+    {
+        $this->idTipoUsuario = $idTipoUsuario;
     }
 }
