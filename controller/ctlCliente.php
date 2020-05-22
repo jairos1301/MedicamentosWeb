@@ -2,12 +2,12 @@
 include "../model/clsCliente.php";
 include '../DAO/clienteDAO.php';
 
-$nombres = isset($_POST['nombres']) ? $_POST['nombres'] : '';
-$apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : '';
-$cedula = isset($_POST['cedula']) ? $_POST['cedula'] : '';
-$genero = isset($_POST['genero']) ? $_POST['genero'] : '';
-$edad = isset($_POST['edad']) ? $_POST['edad'] : '';
-$type = isset($_POST['type']) ? $_POST['type'] : "";
+$nombres = isset($_REQUEST['nombres']) ? $_REQUEST['nombres'] : '';
+$apellidos = isset($_REQUEST['apellidos']) ? $_REQUEST['apellidos'] : '';
+$cedula = isset($_REQUEST['cedula']) ? $_REQUEST['cedula'] : '';
+$genero = isset($_REQUEST['genero']) ? $_REQUEST['genero'] : '';
+$edad = isset($_REQUEST['edad']) ? $_REQUEST['edad'] : '';
+$type = isset($_REQUEST['type']) ? $_REQUEST['type'] : "";
 
 $cliente = new clsCliente($nombres, $apellidos, $cedula, $genero, $edad);
 $conex = new clienteDAO();

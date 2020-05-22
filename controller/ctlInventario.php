@@ -2,7 +2,6 @@
 require '../infrastructure/CORS.php';
 include "../model/clsInventario.php";
 include '../DAO/inventarioDAO.php';
-require '../infrastructure/CORS.php';
 
     $idInventario = isset($_REQUEST['idInventario']) ? $_REQUEST['idInventario'] : '';
     $nombreInv = isset($_REQUEST['nombreInv']) ? $_REQUEST['nombreInv'] : ''; 
@@ -13,9 +12,10 @@ require '../infrastructure/CORS.php';
     $precio = isset($_REQUEST['precio']) ? $_REQUEST['precio'] : '';
     $Empleado_idEmpleado = isset($_REQUEST['Empleado_idEmpleado']) ? $_REQUEST['Empleado_idEmpleado'] : '';
     $Laboratorio_idLaboratorio = isset($_REQUEST['Laboratorio_idLaboratorio']) ? $_REQUEST['Laboratorio_idLaboratorio'] : '';
+    $estanteria = isset($_REQUEST['estanteria']) ? $_REQUEST['estanteria'] : "";
     $type = isset($_REQUEST['type']) ? $_REQUEST['type'] : "";
 
-    $inventario = new clsInventario($idInventario, $nombreInv, $descripcionInv, $fechaVencimiento, $cantidad, $fechaFabricacion, $precio, $Empleado_idEmpleado, $Laboratorio_idLaboratorio);
+    $inventario = new clsInventario($idInventario, $nombreInv, $descripcionInv, $fechaVencimiento, $cantidad, $fechaFabricacion, $precio, $Empleado_idEmpleado, $Laboratorio_idLaboratorio, $estanteria);
     $conex = new inventarioDAO();
 
 switch ($type) {
