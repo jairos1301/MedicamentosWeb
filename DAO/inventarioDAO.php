@@ -16,7 +16,7 @@ class inventarioDAO
 
     public function guardar(clsInventario $obj)
     {
-        $arr = array($obj->getIdInventario(), $obj->getNombreInv(), $obj->getDescripcionInv(), $obj->getFechaVen(), $obj->getCantidad(), $obj->getFechaFab(), $obj->getPrecio(), $obj->getEmpleado_idEmpleado(), $obj->getLaboratorio_idLaboratorio());
+        $arr = array($obj->getIdInventario(), $obj->getNombreInv(), $obj->getDescripcionInv(), $obj->getFechaVen(), $obj->getCantidad(), $obj->getFechaFab(), $obj->getPrecio(), $obj->getEmpleado_idEmpleado(), $obj->getLaboratorio_idLaboratorio(), $obj->getEstanteria());
         $sql = $this->infra->estructura_sql("guardar_inv", $arr);
         $this->objCon->ExecuteTransaction($sql);
     }
@@ -38,7 +38,7 @@ class inventarioDAO
 
     public function modificar(clsInventario $obj)
     {
-        $arr = array($obj->getIdInventario(), $obj->getNombreInv(), $obj->getDescripcionInv(), $obj->getFechaVen(), $obj->getCantidad(), $obj->getFechaFab(), $obj->getPrecio(), $obj->getEmpleado_idEmpleado(), $obj->getLaboratorio_idLaboratorio());
+        $arr = array($obj->getIdInventario(), $obj->getNombreInv(), $obj->getDescripcionInv(), $obj->getFechaVen(), $obj->getCantidad(), $obj->getFechaFab(), $obj->getPrecio(), $obj->getEmpleado_idEmpleado(), $obj->getLaboratorio_idLaboratorio(), $obj->getEstanteria());
         $sql = $this->infra->estructura_sql("modificar_inv", $arr);
         $this->objCon->ExecuteTransaction($sql);
     }

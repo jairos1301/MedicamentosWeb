@@ -11,9 +11,10 @@ class clsInventario
     private $precio;
     private $Empleado_idEmpleado;
     private $Laboratorio_idLaboratorio;
+    private $estanteria;
  
 
-    public function __construct($idInventario, $nombreInv, $descripcionInv, $fechaVen, $cantidad, $fechaFab, $precio, $Empleado_idEmpleado, $Laboratorio_idLaboratorio)
+    public function __construct($idInventario, $nombreInv, $descripcionInv, $fechaVen, $cantidad, $fechaFab, $precio, $Empleado_idEmpleado, $Laboratorio_idLaboratorio, $estanteria)
     {
         $this->idInventario = $idInventario;
         $this->nombreInv = $nombreInv;
@@ -24,6 +25,17 @@ class clsInventario
         $this->precio = $precio;
         $this->idEmpFk = $Empleado_idEmpleado;
         $this->idLabFk = $Laboratorio_idLaboratorio;
+        $this->estanteria = $estanteria;
+    }
+
+    public function getEstanteria()
+    {
+        return $this->estanteria;
+    }
+    
+    public function setEstanteria($idEstanteria)
+    {
+        $this->idEstanteria = $idEstanteria;
     }
 
     public function getIdInventario()

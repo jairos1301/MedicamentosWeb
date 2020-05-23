@@ -17,7 +17,7 @@ class clsLaboratorio{
         return $this->idLaboratorio;
     }
     
-    public function setIdLaboratorio($IdLaboratorio)
+    public function setIdLaboratorio($idLaboratorio)
     {
         $this->idLaboratorio = $idLaboratorio;
     }
