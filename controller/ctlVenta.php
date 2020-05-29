@@ -1,14 +1,18 @@
 <?php
 session_start();
+require '../infrastructure/CORS.php';
 include "../model/clsVenta.php";
 include '../DAO/ventaDAO.php';
 
 $total = isset($_REQUEST['total']) ? $_REQUEST['total'] : '';
 $cliente = isset($_REQUEST['cliente']) ? $_REQUEST['cliente'] : '';
-$empleado = $_SESSION["id"];
+//$empleado = $_SESSION["id"];
+$empleado = 1;
 $type = isset($_REQUEST['type']) ? $_REQUEST['type'] : '';
 $arrInv = isset($_REQUEST['arrInv']) ? $_REQUEST['arrInv'] : '';
 $arrCant = isset($_REQUEST['arrCant']) ? $_REQUEST['arrCant'] : '';
+
+
 
 
 
