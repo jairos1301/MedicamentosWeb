@@ -1,6 +1,8 @@
 <?php
 
 class clsCliente{
+
+    private $idCliente;
     private $nombres;
     private $apellidos;
     private $cedula;
@@ -8,8 +10,9 @@ class clsCliente{
     private $edad;
     
     
-    public function __construct($nombres, $apellidos, $cedula, $genero, $edad)
+    public function __construct($idCliente, $nombres, $apellidos, $cedula, $genero, $edad)
     {
+        $this->idCliente = $idCliente;
         $this->nombres = $nombres;
         $this->apellidos = $apellidos;
         $this->cedula = $cedula;
@@ -17,52 +20,62 @@ class clsCliente{
         $this->edad = $edad;
     }
 
-    public function getnombres()
+    public function getIdCliente()
+    {
+        return $this->idCliente;
+    }
+    
+    public function setIdCliente($idCliente)
+    {
+        $this->idCliente = $idCliente;
+    }
+    
+    public function getNombres()
     {
         return $this->nombres;
     }
     
-    public function setnombres($nombres)
+    public function setNombres($nombres)
     {
         $this->nombres = $nombres;
     }
 
-    public function getapellidos()
+    public function getApellidos()
     {
         return $this->apellidos;
     }
     
-    public function setapellidos($apellidos)
+    public function setApellidos($apellidos)
     {
         $this->apellidos = $apellidos;
     }     
 
-    public function getcedula()
+    public function getCedula()
     {
         return $this->cedula;
     }
     
-    public function setcedula($cedula)
+    public function setCedula($cedula)
     {
         $this->cedula = $cedula;
     }
     
-    public function getgenero()
+    public function getGenero()
     {
         return $this->genero;
     }
     
-    public function setgenero($genero)
+    public function setGenero($genero)
     {
         $this->genero = $genero;
     }
 
-    public function getedad()
+    public function getEdad()
     {
         return $this->edad;
     }
     
-    public function setedad($edad)
+    public function setEdad($edad)
     {
         $this->edad = $edad;
     }
