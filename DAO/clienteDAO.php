@@ -20,10 +20,43 @@ class clienteDAO
         $this->objCon->Execute($sql);
     }
 
+    public function listarInfoBonos(clsCliente $obj)
+    {
+        $arr = array($obj->getIdCliente());
+        $sql = $this->infra->estructura_sql("listar_info_bonos", $arr, 1);
+        $this->objCon->Execute($sql);
+    }
+
+    public function listarHistorialVentas(clsCliente $obj)
+    {
+        $arr = array($obj->getIdCliente());
+        $sql = $this->infra->estructura_sql("listar_historial_ventas", $arr, 1);
+        $this->objCon->Execute($sql);
+    }
+
     public function guardar(clsCliente $obj)
     {
-        $arr = array($obj->getnombres(), $obj->getapellidos(), $obj->getcedula(), $obj->getgenero(), $obj->getedad());
+        $arr = array($obj->getNombres(), $obj->getApellidos(), $obj->getCedula(), $obj->getGenero(), $obj->getEdad());
         $sql = $this->infra->estructura_sql("guardar_cliente", $arr);
+        $this->objCon->ExecuteTransaction($sql);
+    }
+
+    public function buscar(clsCliente $obj){
+        $arr = array($obj->getCedula());
+        $sql = $this->infra->estructura_sql("buscar_cli", $arr, 1);
+        $this->objCon->Execute($sql);
+    }
+
+    public function eliminar(clsCliente $obj)
+    {
+        $arr = array($obj->getIdCliente());
+        $sql = $this->infra->estructura_sql("eliminar_cli", $arr);
+        $this->objCon->ExecuteTransaction($sql);
+    }
+
+    public function modificar(clsCliente $obj){
+        $arr = array($obj->getIdCliente(),$obj->getNombres(), $obj->getApellidos(), $obj->getCedula(), $obj->getGenero(), $obj->getEdad());
+        $sql = $this->infra->estructura_sql("modificar_cli", $arr);
         $this->objCon->ExecuteTransaction($sql);
     }
 
